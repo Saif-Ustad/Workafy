@@ -66,35 +66,80 @@ const ProjectsData = [
 
 const Work = () => {
 
-
     const [scrollX, setScrollX] = useState(0);
     const [startX, setStartX] = useState(null);
-    const [isDragging, setIsDragging] = useState(false);
     const ref = useRef(null);
 
     const handleTouchStart = (e) => {
         const firstTouch = e.touches[0];
         setStartX(firstTouch.clientX);
-        setIsDragging(true);
     };
 
     const handleTouchMove = (e) => {
-        if (!isDragging) return;
+        if (startX === null) return;
         const currentX = e.touches[0].clientX;
         const diff = startX - currentX;
-        setScrollX(scrollX + diff);
+        setScrollX((prevScrollX) => prevScrollX + diff);
         setStartX(currentX);
     };
 
     const handleTouchEnd = () => {
-        setIsDragging(false);
+        setStartX(null);
+    };
+
+    const handleMouseDown = (e) => {
+        setStartX(e.clientX);
+    };
+
+    const handleMouseMove = (e) => {
+        if (startX === null) return;
+        const currentX = e.clientX;
+        const diff = startX - currentX;
+        setScrollX((prevScrollX) => prevScrollX + diff);
+        setStartX(currentX);
+    };
+
+    const handleMouseUp = () => {
+        setStartX(null);
     };
 
     useEffect(() => {
-        if (!ref.current) return;
-        ref.current.scrollTo({ left: scrollX, behavior: 'smooth' });
-    }, [scrollX]);
+        const handleMove = (e) => {
+            if (startX !== null) {
+                e.preventDefault();
+                handleMouseMove(e);
+            }
+        };
 
+        const handleUp = () => {
+            handleMouseUp();
+            document.removeEventListener('mousemove', handleMove);
+            document.removeEventListener('mouseup', handleUp);
+        };
+
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('mouseup', handleUp);
+
+        return () => {
+            document.removeEventListener('mousemove', handleMove);
+            document.removeEventListener('mouseup', handleUp);
+        };
+    }, [startX, handleMouseMove, handleMouseUp]);
+
+    useEffect(() => {
+        let animationFrameId;
+        const animateScroll = () => {
+            if (ref.current) {
+                ref.current.scrollTo({ left: scrollX, behavior: 'auto' });
+            }
+            animationFrameId = requestAnimationFrame(animateScroll);
+        };
+        animateScroll();
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, [scrollX]);
 
     return (
         <section className="Work-section">
@@ -115,13 +160,16 @@ const Work = () => {
 
                 <div
                     ref={ref}
-                    className={`${style.corousel}  mb-[20px]`}
+                    className={`${style.corousel}  mb-[20px] cursor-grab`}
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
                 >
                     {ProjectsData.map((data, id) => (
-                        <div key={id} className="">
+                        <div key={id} >
                             <ProjectCard state={data.state} title={data.title} description={data.description} budget={data.budget}/>
                         </div>
                     ))}
@@ -129,9 +177,9 @@ const Work = () => {
 
                 {/* nav-icons */}
                 <div className="flex gap-5 text-[30px] justify-center items-center">
-                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX - 200)}><IoIosArrowRoundBack /></span>
+                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX - 800)}><IoIosArrowRoundBack /></span>
                     <span className="text-[20px]"><GoDotFill /></span>
-                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX + 200)}><IoIosArrowRoundForward /></span>
+                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX + 800)}><IoIosArrowRoundForward /></span>
                 </div>
 
 
