@@ -16,12 +16,19 @@
 @media (max-width: 1460px) {
 
     .green_rectangle::before {
-        bottom: -30px;
-        left: -30px;
-        right: -30px;
+        bottom: -24px;
+        left: -24px;
+        right: -24px;
     }
 }
+@media (max-width: 640px) {
 
+    .green_rectangle::before {
+        bottom: -16px;
+        left: -16px;
+        right: -16px;
+    }
+}
 
 .searchBar {
     box-shadow: 10px 10px 0px #b0eacd

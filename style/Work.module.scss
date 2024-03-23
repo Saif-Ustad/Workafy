@@ -1,0 +1,32 @@
+.corousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 4) - 15px);
+    overflow: hidden;
+    gap: 20px;
+    
+}
+
+@media (max-width: 1240px) {
+    .corousel {
+        grid-auto-columns: calc((100% / 3) - 15px);
+    }
+    
+}
+
+@media (max-width: 980px) {
+    .corousel {
+        grid-auto-columns: calc((100% / 2) - 10px);
+    }
+    
+}
+
+@media (max-width: 840px) {
+    .corousel {
+        grid-auto-columns: calc(100% );
+    }
+    
+}
+
+
+

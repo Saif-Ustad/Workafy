@@ -77,16 +77,16 @@ const About = () => {
                             <span className="bg-[#ffede8] px-4 py-3 rounded-[25px] text-[13px] md:text-[14px] text-headings font-medium">React</span>
                         </div>
 
-                        <div className="flex flex-row justify-between ">
-                            <div>
+                        <div className="flex flex-row justify-between gap-5 ">
+                            <div className="flex flex-col items-center">
                                 <h5 className="text-[13px] md:text-[14px] text-headings font-medium">Location</h5>
                                 <span className="text-[12px] md:text-[13px] text-headings">Karnataka</span>
                             </div>
-                            <div>
+                            <div className="flex flex-col items-center">
                                 <h5 className="text-[13px] md:text-[14px] text-headings font-medium">Joined</h5>
                                 <span className="text-[12px] md:text-[13px] text-headings">Feb 10 2018</span>
                             </div>
-                            <div>
+                            <div className="flex flex-col items-center">
                                 <h5 className="text-[13px] md:text-[14px] text-headings font-medium">Last Active</h5>
                                 <span className="text-[12px] md:text-[13px] text-headings">Jan 30 2024</span>
                             </div>
