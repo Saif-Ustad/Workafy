@@ -1,0 +1,51 @@
+.spin_right {
+    animation: spin-right 14s infinite linear;
+}
+
+@keyframes spin-right {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.bounceX {
+    animation: bounceX 6s ease-in-out infinite;
+}
+
+@keyframes bounceX {
+
+    0% {
+        transform: translatex(0px);
+    }
+
+    50% {
+        transform: translatex(-20px);
+    }
+
+    100% {
+        transform: translatex(0px);
+    }
+
+}
+
+
+.bounceY {
+    animation: bounceY 6s ease-in-out infinite;
+}
+
+
+@keyframes bounceY {
+    0% {
+        transform: translatey(0px);
+    }
+    50% {
+        transform: translatey(-20px);
+    }
+    100% {
+        transform: translatey(0px);
+    }   
+}

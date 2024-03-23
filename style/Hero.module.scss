@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+
+
+.green_rectangle::before {
+    background-color: #1f4b3e;
+    bottom: -50px;
+    content: "";
+    height: 277px;
+    left: -50px;
+    position: absolute;
+    right: -50px;
+    z-index: -1;
+}
+
+@media (max-width: 1460px) {
+
+    .green_rectangle::before {
+        bottom: -30px;
+        left: -30px;
+        right: -30px;
+    }
+}
+
+
+.searchBar {
+    box-shadow: 10px 10px 0px #b0eacd
+}
+
+
+
+
+.spin_right {
+    animation: spin-right 14s infinite linear;
+}
+
+@keyframes spin-right {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.bounceY {
+    animation: bounceY 6s ease-in-out infinite;
+}
+
+
+@keyframes bounceY {
+    0% {
+        transform: translatey(0px);
+    }
+    50% {
+        transform: translatey(-20px);
+    }
+    100% {
+        transform: translatey(0px);
+    }   
+}

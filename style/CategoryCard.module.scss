@@ -1,0 +1,19 @@
+
+/* category section css */
+
+.shadow_right_bottom:hover {
+    box-shadow: 10px 10px 0 0 #ffede8;
+}
+
+
+.category_card_icon_circle{
+    background-color:  #fbf7ed;
+    width: 40px;
+    height: 40px;
+    content: "";
+    left: 30%;
+    position: absolute;
+    top:20%;
+    border-radius: 100%;
+    z-index: -1;
+}

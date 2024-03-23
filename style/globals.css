@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter;
+}
+
+:root {
+    --title-font-family: "DM Sans", sans-serif;
+    --body-font-family: "DM Sans", sans-serif;
+    --container-width: 1460px;
+    --divder-space: 200px;
+    --headings-color: #1f4b3e;
+    --body-text-color: #6b7177;
+}
+
+.container {
+    max-width: 1460px;
+    /* background-color: skyblue; */
+}
+
+@media (max-width: 1460px) {
+    .container {
+        max-width: 1240px;
+    }
+}
+
+@media (max-width: 1240px) {
+    .container {
+        max-width: 980px;
+    }
+}
+
+@media (max-width: 980px) {
+    .container {
+        max-width: 840px;
+    }
+}
+
+@media (max-width: 840px) {
+    .container {
+        max-width: 640px;
+    }
+}
+@media (max-width: 640px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+
+
+
