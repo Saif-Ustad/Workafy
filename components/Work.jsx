@@ -177,9 +177,9 @@ const Work = () => {
 
                 {/* nav-icons */}
                 <div className="flex gap-5 text-[30px] justify-center items-center">
-                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX - 800)}><IoIosArrowRoundBack /></span>
+                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX - 500)}><IoIosArrowRoundBack /></span>
                     <span className="text-[20px]"><GoDotFill /></span>
-                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX + 800)}><IoIosArrowRoundForward /></span>
+                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX + 500)}><IoIosArrowRoundForward /></span>
                 </div>
 
 

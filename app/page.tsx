@@ -5,6 +5,8 @@ import Category from "../components/Category"
 import About from "../components/About"
 import Work from "../components/Work"
 import Banner2 from "../components/Banner2"
+import Achievements from "../components/Achievements"
+import Funfact from "../components/Funfact"
 
 const Home = () =>{
   return (
@@ -16,6 +18,8 @@ const Home = () =>{
       <About />
       <Work />
       <Banner2 />
+      <Achievements />
+      <Funfact />
     </>
     
   )
