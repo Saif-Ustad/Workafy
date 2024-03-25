@@ -8,7 +8,7 @@ const Funfact = () => {
                 <div className="md:max-w-[400px]   lg:w-1/2">
                     <h1 className="text-[25px] md:text-[30px] font-bold text-headings mb-[20px] md:mb-[30px] ">Find the talent needed to get your business growing.</h1>
                     <p className="text-[14px] md:text-[15px] text-headings mb-[30px] ">Our diverse pool of professionals is ready to fuel your business growth.</p>
-                    <div className="py-3 sm:py-4 bg-customDarkGreen max-w-[160px] sm:max-w-[200px] rounded-[5px] text-white font-semibold text-[15px] sm:text-[18px] flex gap-2 items-center justify-center hover:bg-customGreen cursor-pointer">Get Started <span className="text-[20px]"><GoArrowUpRight /></span></div>
+                    <a href="/dashboard" ><div className="py-3 sm:py-4 bg-customDarkGreen max-w-[160px] sm:max-w-[200px] rounded-[5px] text-white font-semibold text-[15px] sm:text-[18px] flex gap-2 items-center justify-center hover:bg-customGreen cursor-pointer">Get Started <span className="text-[20px]"><GoArrowUpRight /></span></div></a>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-[20px]  lg:w-1/2">
                     <div className="flex flex-col gap-[20px] justify-between sm:max-w-[300px] w-full">

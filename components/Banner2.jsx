@@ -26,7 +26,7 @@ const Banner2 = () => {
                         <p className="text-[14px] md:text-[15px] text-headings  ">Most viewed and all-time top-selling services</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row gap-[20px]">
-                        <Link href={"/"} className="lg:max-w-[340px] w-full shadow-md rounded-[12px]" >
+                        <Link href={"/dashboard"} className="lg:max-w-[340px] w-full shadow-md rounded-[12px]" >
                             <div className="bg-white p-[20px] sm:p-[35px] rounded-[12px]  hover:bg-[#ffede8] transition duration-500 ease-in-out">
                                 <div className="text-headings text-[30px] sm:text-[35px] mb-[15px]"><GrWorkshop /></div>
                                 <h3 className="text-[16px] sm:text-[18px] text-headings font-medium mb-2">Post a work</h3>
@@ -34,7 +34,7 @@ const Banner2 = () => {
                             </div>
                         </Link >
 
-                        <Link href={"/"} className="lg:max-w-[340px] w-full shadow-md rounded-[12px]  ">
+                        <Link href={"/dashboard"} className="lg:max-w-[340px] w-full shadow-md rounded-[12px]  ">
                             <div className="bg-white p-[20px] sm:p-[35px] rounded-[12px] hover:bg-[#ffede8] transition duration-500 ease-in-out">
                                 <div className="text-headings text-[30px] sm:text-[35px] mb-[15px]"><GrUserExpert /></div>
                                 <h3 className="text-[16px] sm:text-[18px] text-headings font-medium mb-2">Hire eXperts</h3>
@@ -42,7 +42,7 @@ const Banner2 = () => {
                             </div>
                         </Link>
 
-                        <Link href={"/"} className="lg:max-w-[340px] w-full shadow-md rounded-[12px]  " >
+                        <Link href={"/dashboard"} className="lg:max-w-[340px] w-full shadow-md rounded-[12px]  " >
                             <div className="bg-white p-[20px] sm:p-[35px] rounded-[12px] hover:bg-[#ffede8] transition duration-500 ease-in-out">
                                 <div className="text-headings text-[30px] sm:text-[35px] mb-[15px]"><FiUserCheck /></div>
                                 <h3 className="text-[16px] sm:text-[18px] text-headings font-medium mb-2">Consult Workafy</h3>

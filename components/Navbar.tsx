@@ -9,7 +9,13 @@ import { IoSearchOutline } from 'react-icons/io5';
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { useState } from 'react';
 
+//clerk
+import { UserButton, useAuth } from "@clerk/nextjs";
+
+
 const Navbar = () => {
+  const { userId } = useAuth();
+  const isAuth = !!userId;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,8 +33,8 @@ const Navbar = () => {
               <Image src="/Images/workafy-logo.svg" alt="logo" width={120} height={50} />
             </Link>
           </li>
-          <li className="hidden lg:block font-15 hover:text-customGreen hover:cursor-pointer"><Link href={'/'} >Hire X</Link></li>
-          <li className="hidden lg:block font-15 hover:text-customGreen hover:cursor-pointer"><Link href={'/'} >Find Work</Link></li>
+          <li className="hidden lg:block font-15 hover:text-customGreen hover:cursor-pointer"><Link href={'/dashboard'} >Hire X</Link></li>
+          <li className="hidden lg:block font-15 hover:text-customGreen hover:cursor-pointer"><Link href={'/dashboard'} >Find Work</Link></li>
           <li className="hidden lg:block font-15 hover:text-customGreen hover:cursor-pointer"><Link href={'/'} >Why.....Afy?</Link></li>
         </ul>
       </div>
@@ -37,14 +43,26 @@ const Navbar = () => {
           <li className="hidden lg:block font-15  hover:text-customGreen hover:cursor-pointer">
             <IoSearchOutline />
           </li>
-          <li className="hidden lg:block font-15  hover:text-customGreen hover:cursor-pointer">Log in</li>
-          <li className="font-15  hover:text-customGreen hover:cursor-pointer">Join</li>
+
+          {isAuth ? (
+            <li ><UserButton afterSignOutUrl="/"/></li>
+          ) : (
+            <>
+              <li className="hidden lg:block font-15  hover:text-customGreen hover:cursor-pointer"><a href="/sign-in">Log in</a></li>
+              <li className="font-15  hover:text-customGreen hover:cursor-pointer"><a href="/sign-up">Join</a></li>
+            </>
+          )
+          }
+
+
+
+
           <li className="lg:hidden  text-xl  hover:text-customGreen hover:cursor-pointer" onClick={toggleMenu}>
             <HiOutlineMenuAlt3 />
           </li>
           <li className='hidden lg:block'>
             <Link href={'/'} >
-              <Button buttonText="Assign Work" btnColor="customRed"/>
+              <Button buttonText="Assign Work" btnColor="customRed" />
             </Link>
           </li>
         </ul>

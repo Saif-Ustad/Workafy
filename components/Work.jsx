@@ -150,7 +150,7 @@ const Work = () => {
                         <p className="text-[14px] md:text-[15px] text-headings  ">Tap on international projects from anywhere, anytime.</p>
                     </div>
                     <div className="gap-3 mb-5 lg:mb-0 ">
-                        <a href="/" className="flex items-center cursor-pointer">
+                        <a href="/dashboard" className="flex items-center cursor-pointer">
                             <p className="text-[14px] md:text-[15px] font-bold text-headings">Browse All</p>
                             <span className="text-[22px] md:text-[25px]  text-headings"><IoIosArrowRoundForward /></span>
                         </a>
