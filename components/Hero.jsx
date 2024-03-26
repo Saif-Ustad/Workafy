@@ -30,10 +30,14 @@ const Hero = () => {
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-        speed: 500,
+        speed: 800,
         swipeToSlide: true,
         prevArrow: <></>,
         nextArrow: <></>,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        cssEase: "linear",
+        pauseOnHover: true
         
 
     };
