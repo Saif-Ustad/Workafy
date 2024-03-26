@@ -7,7 +7,7 @@ import Button from './Button';
 //icons
 import { IoSearchOutline } from 'react-icons/io5';
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 //clerk
 import { UserButton, useAuth } from "@clerk/nextjs";
@@ -17,11 +17,40 @@ const Navbar = () => {
   const { userId } = useAuth();
   const isAuth = !!userId;
 
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(prevState => !prevState);
   };
+
+  useEffect(() => {
+    const handleBodyClick = (e: MouseEvent) => {
+      if (isMenuOpen && menuRef.current && !(menuRef.current as HTMLElement).contains(e.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleBodyClick);
+
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+    };
+  }, [isMenuOpen]);
+
+  
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto'; // Reset overflow on unmount or when isMenuOpen changes
+    };
+  }, [isMenuOpen]);
 
 
   return (
@@ -45,7 +74,7 @@ const Navbar = () => {
           </li>
 
           {isAuth ? (
-            <li ><UserButton afterSignOutUrl="/"/></li>
+            <li ><UserButton afterSignOutUrl="/" /></li>
           ) : (
             <>
               <li className="hidden lg:block font-15  hover:text-customGreen hover:cursor-pointer"><a href="/sign-in">Log in</a></li>
@@ -53,9 +82,6 @@ const Navbar = () => {
             </>
           )
           }
-
-
-
 
           <li className="lg:hidden  text-xl  hover:text-customGreen hover:cursor-pointer" onClick={toggleMenu}>
             <HiOutlineMenuAlt3 />
@@ -70,15 +96,22 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50" >
-          <div className="absolute top-0 left-0 bg-white w-[calc(80vw)] sm:w-96 h-screen">
+          <div className="absolute top-0 left-0 bg-white w-[calc(80vw)] sm:w-96 h-screen" ref={menuRef} onClick={(e) => e.stopPropagation()}>
             <div className='text-center text-xl font-semibold bg-green-50 py-4 border-b border-gray-300'>Menu</div>
             <ul className="py-6">
               <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4 hover:bg-green-50 font-semibold" ><a href={'/'} >HOME  </a></li>
-              <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4   hover:bg-green-50 font-semibold" ><a href={'/'} >HIRE X  </a></li>
-              <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4  hover:bg-green-50 font-semibold" ><a href={'/'} >FIND WORK  </a></li>
+              <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4   hover:bg-green-50 font-semibold" ><a href={'/dashboard'} >HIRE X  </a></li>
+              <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4  hover:bg-green-50 font-semibold" ><a href={'/dashboard'} >FIND WORK  </a></li>
               <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4  hover:bg-green-50 font-semibold" ><a href={'/'} >WHY.....AFY?  </a></li>
-              <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4  hover:bg-green-50 font-semibold" ><a href={'/'} >SIGN UP?  </a></li>
-              <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4  hover:bg-green-50 font-semibold" ><a href={'/'} >LOG IN  </a></li>
+              {!isAuth ? (
+                <>
+                  <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4  hover:bg-green-50 font-semibold" ><a href={'/sign-up'} >SIGN UP?  </a></li>
+                  <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4  hover:bg-green-50 font-semibold" ><a href={'/sign-in'} >LOG IN  </a></li>
+                </>
+              ) : (
+                <li className="text-[13px] sm:text-[15px] hover:text-customGreen hover:cursor-pointer p-4  hover:bg-green-50 font-semibold"><a href={'/dashboard'}>PROFILE</a></li>
+              )}
+
             </ul>
           </div>
 
