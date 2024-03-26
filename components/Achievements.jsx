@@ -7,7 +7,7 @@ import { HiOutlineRocketLaunch } from "react-icons/hi2";
 const Achievements = () => {
   return (
    <section className="achievements-section">
-        <div className="container  mx-auto px-4 sm:px-6 lg:px-8  my-[100px] sm:my-[150px]">
+        <div className="container  mx-auto px-4 sm:px-6 lg:px-8  my-[100px] sm:my-[150px]" data-aos="fade-up">
             <div className="text-center mb-[100px]">
                 <h1 className="text-[25px] md:text-[35px] font-bold text-headings mb-[10px] sm:mb-[15px]">Workafy Achievements</h1>
                 <p className="text-[14px] md:text-[15px] text-headings  ">Showcasing the collective success of our vibrant network - where expertise meets innovation.</p>

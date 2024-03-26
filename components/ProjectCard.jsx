@@ -10,7 +10,7 @@ const ProjectCard = ({state, title, description, budget}) => {
             <span className="text-[15px] md:text-[18px]"><FaRegStar /></span>
         </div>
         <h2 className="text-[16px] md:text-[18px] font-medium  text-headings mb-[15px] sm:mb-[20px]">{title}</h2>
-        <p className="text-[14px] md:text-[15px] text-body-text leading-[1.75] mb-[15px] sm:mb-[20px]">{description}</p>
+        <p className="text-[14px] md:text-[14px] text-body-text leading-[1.75] mb-[15px] sm:mb-[20px]">{description}</p>
         <h3 className="text-[16px] md:text-[18px] font-medium  text-headings">Budget : {budget}</h3>
     </div>
   )

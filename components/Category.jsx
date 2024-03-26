@@ -68,8 +68,8 @@ const CategoryCardData = [
 const Category = () => {
     return (
         <section className="category-section">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8  mt-[50px] md:mt-[120px]">
-                <div className="flex flex-col lg:flex-row  justify-between lg:items-end mb-6">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8  mt-[50px] md:mt-[120px]" >
+                <div className="flex flex-col lg:flex-row  justify-between lg:items-end mb-6"  data-aos="fade-left">
                     <div className="mb-6 lg:mb-0">
                         <h1 className="text-[25px] md:text-[30px] font-bold text-headings mb-[10px] sm:mb-[15px]">Browse talent by category</h1>
                         <p className="text-[14px] md:text-[15px] text-headings  ">Get some Inspirations from 2450+ skills</p>
@@ -83,7 +83,7 @@ const Category = () => {
 
                 </div>
 
-                <div className="grid grid-cols-1  sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1  sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-8" data-aos="fade-right">
                     {CategoryCardData.map((data, id) => (
                         <CategoryCard key={id} icon={data.icon} skillsCount={data.skillsCount} category={data.category}/>
                     ))}

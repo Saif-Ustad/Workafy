@@ -10,10 +10,10 @@ import style from "../style/Banner.module.scss"
 const Banner = () => {
     return (
         <section id="Banner-section" className="relative">
-        <div className="container  mx-auto px-4 py-[30px] sm:px-6 sm:py-[50px] lg:px-8 lg:py-[80px]  mt-[100px] sm:mt-[150px] flex flex-col items-center lg:justify-end lg:flex-row  gap-[20px] md:gap-[80px] ">
-            <div className={style.greenShade}>
-                <h1 className="text-[25px] md:text-[30px] font-bold text-headings mb-[30px] md:mb-[50px] max-w-[500px]">A whole world of freelance talent at your fingertips</h1>
-                <div className="max-w-[580px]">
+        <div className="container  mx-auto px-4 py-[30px] sm:px-6 sm:py-[50px] lg:px-8 lg:py-[80px]  mt-[100px] sm:mt-[150px] flex flex-col items-center lg:justify-end lg:flex-row  gap-[20px] md:gap-[80px] " >
+            <div className={style.greenShade} >
+                <h1 className="text-[25px] md:text-[30px] font-bold text-headings mb-[30px] md:mb-[50px] max-w-[500px]" data-aos="zoom-in">A whole world of freelance talent at your fingertips</h1>
+                <div className="max-w-[580px]" data-aos="zoom-in">
                     <div className="flex gap-[10px] sm:gap-[20px] mb-3 sm:mb-5"> 
                         <span className="text-[30px] sm:text-[35px] text-headings"><FaMedal /></span>
                         <div>

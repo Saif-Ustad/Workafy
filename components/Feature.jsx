@@ -32,12 +32,12 @@ const FeatureCardData = [
 
 const Feature = () => {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8  mt-[100px] sm:mt-[150px]">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8  mt-[100px] sm:mt-[150px] " data-aos="fade-up">
         <div>
             <h1 className="text-[25px] md:text-[30px] font-semibold text-headings mb-2">Need anything done?</h1>
             <p className="text-[14px] md:text-[15px] text-headings mb-8 md:mb-[60px]">Most viewed and all-time top-selling services</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 " >
             {FeatureCardData.map((data, id) => (
                 <FeatureCard key={id} icon={data.icon} title={data.title} text={data.text} />
             ))}

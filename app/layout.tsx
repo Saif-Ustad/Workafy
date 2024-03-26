@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "../style/globals.css"
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 //clerk
@@ -23,15 +24,15 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ClerkLoading>
-              <div className="flex flex-col items-center text-center  mt-32">
-                Loading...
-              </div>
+            <div className="flex flex-col items-center text-center  mt-32">
+              Loading...
+            </div>
           </ClerkLoading>
 
           <ClerkLoaded>
             {children}
           </ClerkLoaded>
-        
+
         </body>
       </html>
     </ClerkProvider>

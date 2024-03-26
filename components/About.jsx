@@ -95,7 +95,7 @@ const About = () => {
 
                     </div>
                 </div>
-                <div className=""> 
+                <div className="" data-aos="fade-left"> 
                     <h1 className="text-[25px] md:text-[30px] font-semibold text-headings mb-[10px] max-w-[500px]">Trusted By Thousands of Freelancers</h1>
                     <p className="text-[14px] md:text-[15px] text-headings max-w-[280px] leading-[1.75] mb-[30px] ">Get your work done from anywhere. Hire an eXpert today!</p>
                     <ul className="flex flex-col gap-[25px] mb-[40px]">

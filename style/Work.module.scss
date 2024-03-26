@@ -1,32 +1,75 @@
-.corousel {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc((100% / 4) - 15px);
-    overflow: hidden;
-    gap: 20px;
+// .corousel {
+//     display: grid;
+//     grid-auto-flow: column;
+//     grid-auto-columns: calc((100% / 4) - 15px);
+//     overflow: hidden;
+//     gap: 20px;
     
+// }
+
+// @media (max-width: 1240px) {
+//     .corousel {
+//         grid-auto-columns: calc((100% / 3) - 15px);
+//     }
+    
+// }
+
+// @media (max-width: 980px) {
+//     .corousel {
+//         grid-auto-columns: calc((100% / 2) - 10px);
+//     }
+    
+// }
+
+// @media (max-width: 840px) {
+//     .corousel {
+//         grid-auto-columns: calc(100% );
+//     }
+    
+// }
+
+
+/* Custom arrow styles */
+.slider-container {
+    position: relative;
 }
 
-@media (max-width: 1240px) {
-    .corousel {
-        grid-auto-columns: calc((100% / 3) - 15px);
+/* Custom previous arrow */
+.CustomPrevArrow {
+    position: absolute;
+    top: 50%;
+    left: -30px; /* Adjust this value as needed */
+    transform: translateY(-50%);
+    z-index: 1;
+    cursor: pointer;
+    font-size: 30px;
+    :hover {
+        transform: translateX(-5px) ;
     }
-    
+
 }
 
-@media (max-width: 980px) {
-    .corousel {
-        grid-auto-columns: calc((100% / 2) - 10px);
+/* Custom next arrow */
+.CustomNextArrow {
+    position: absolute;
+    top: 50%;
+    right: -30px; /* Adjust this value as needed */
+    transform: translateY(-50%);
+    z-index: 1;
+    cursor: pointer;
+    font-size: 30px;
+    :hover {
+        transform: translateX(5px) ;
     }
-    
 }
 
-@media (max-width: 840px) {
-    .corousel {
-        grid-auto-columns: calc(100% );
+
+@media (max-width: 680px) {
+    .CustomPrevArrow{
+        left: -15px;
     }
-    
+    .CustomNextArrow {
+        right: -15px;
+    }
 }
-
-
 

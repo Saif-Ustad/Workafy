@@ -2,9 +2,11 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+
+
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className='root'>
+    <main className='root overflow-hidden' >
       <div className="w-full">
         <Navbar />
         <div className="mt-8">{children}</div>

@@ -1,4 +1,4 @@
-"use client"
+
 
 import style from "../style/Work.module.scss"
 
@@ -6,145 +6,122 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 
 import ProjectCard from "../components/ProjectCard"
 
-import { IoIosArrowRoundBack } from "react-icons/io";
-import { GoDotFill } from "react-icons/go";
+import Slider from "react-slick";
 
-import { useState } from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
+import { IoIosArrowRoundBack } from "react-icons/io";
+
+
 
 const ProjectsData = [
     {
-        state:"United States",
-        title:"YouTube Video Editor for an Agency",
-        description:"We are an established digital agency specializing in YouTube content creation and marketing, and we are...",
-        budget:"$350"
+        state: "United States",
+        title: "YouTube Video Editor for an Agency",
+        description: "We are an established digital agency specializing in YouTube content creation and marketing, and we are...",
+        budget: "$350"
     },
     {
-        state:"United States",
-        title:"Developer needed to build a Web-based app",
-        description:"Fully developed concept with some written code. I already have mobile app code for iOS and Android that ...",
-        budget:"$2500"
+        state: "United States",
+        title: "Developer needed to build a Web-based app",
+        description: "Fully developed concept with some written code. I already have mobile app code for iOS and Android that ...",
+        budget: "$2500"
     },
     {
-        state:"United States",
-        title:"Cryptocurrency token contract",
-        description:"Experienced person to create the smart contract and presale website for a meme token...",
-        budget:"$200"
+        state: "United States",
+        title: "Cryptocurrency token contract",
+        description: "Experienced person to create the smart contract and presale website for a meme token...",
+        budget: "$200"
     },
     {
-        state:"United States",
-        title:"ChatGPT Consulting",
-        description:"We are seeking a highly skilled and innovative ChatGPT Developer to join our team. As a ChatGPT Developer, you will be...",
-        budget:"$2000"
+        state: "United States",
+        title: "ChatGPT Consulting",
+        description: "We are seeking a highly skilled and innovative ChatGPT Developer to join our team. As a ChatGPT Developer, you will be...",
+        budget: "$2000"
     },
     {
-        state:"United States",
-        title:"YouTube Video Editor for an Agency",
-        description:"We are an established digital agency specializing in YouTube content creation and marketing, and we are...",
-        budget:"$350"
+        state: "United States",
+        title: "YouTube Video Editor for an Agency",
+        description: "We are an established digital agency specializing in YouTube content creation and marketing, and we are...",
+        budget: "$350"
     },
     {
-        state:"United States",
-        title:"Developer needed to build a Web-based app",
-        description:"Fully developed concept with some written code. I already have mobile app code for iOS and Android that ...",
-        budget:"$2500"
+        state: "United States",
+        title: "Developer needed to build a Web-based app",
+        description: "Fully developed concept with some written code. I already have mobile app code for iOS and Android that ...",
+        budget: "$2500"
     },
     {
-        state:"United States",
-        title:"Cryptocurrency token contract",
-        description:"Experienced person to create the smart contract and presale website for a meme token...",
-        budget:"$200"
+        state: "United States",
+        title: "Cryptocurrency token contract",
+        description: "Experienced person to create the smart contract and presale website for a meme token...",
+        budget: "$200"
     },
     {
-        state:"United States",
-        title:"ChatGPT Consulting",
-        description:"We are seeking a highly skilled and innovative ChatGPT Developer to join our team. As a ChatGPT Developer, you will be...",
-        budget:"$2000"
+        state: "United States",
+        title: "ChatGPT Consulting",
+        description: "We are seeking a highly skilled and innovative ChatGPT Developer to join our team. As a ChatGPT Developer, you will be...",
+        budget: "$2000"
     },
 ]
 
+const CustomPrevArrow = (props) => {
+    const { onClick } = props;
+    return <div className={`${style.CustomPrevArrow} `} onClick={onClick}><IoIosArrowRoundBack /></div>;
+};
+
+const CustomNextArrow = (props) => {
+    const { onClick } = props;
+    return <div className={`${style.CustomNextArrow}`}  onClick={onClick}><IoIosArrowRoundForward /></div>;
+};
+
+
 const Work = () => {
 
-    const [scrollX, setScrollX] = useState(0);
-    const [startX, setStartX] = useState(null);
-    const ref = useRef(null);
+    
 
-    const handleTouchStart = (e) => {
-        const firstTouch = e.touches[0];
-        setStartX(firstTouch.clientX);
-    };
-
-    const handleTouchMove = (e) => {
-        if (startX === null) return;
-        const currentX = e.touches[0].clientX;
-        const diff = startX - currentX;
-        setScrollX((prevScrollX) => prevScrollX + diff);
-        setStartX(currentX);
-    };
-
-    const handleTouchEnd = () => {
-        setStartX(null);
-    };
-
-    const handleMouseDown = (e) => {
-        setStartX(e.clientX);
-    };
-
-    const handleMouseMove = (e) => {
-        if (startX === null) return;
-        const currentX = e.clientX;
-        const diff = startX - currentX;
-        setScrollX((prevScrollX) => prevScrollX + diff);
-        setStartX(currentX);
-    };
-
-    const handleMouseUp = () => {
-        setStartX(null);
-    };
-
-    useEffect(() => {
-        const handleMove = (e) => {
-            if (startX !== null) {
-                e.preventDefault();
-                handleMouseMove(e);
+    var settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        speed: 500,
+        swipeToSlide: true,
+        prevArrow: <CustomPrevArrow />,
+        nextArrow: <CustomNextArrow />,
+        responsive: [
+            {
+                breakpoint: 1240,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 980,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 840,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
             }
-        };
+        ]
+    };
 
-        const handleUp = () => {
-            handleMouseUp();
-            document.removeEventListener('mousemove', handleMove);
-            document.removeEventListener('mouseup', handleUp);
-        };
+  
 
-        document.addEventListener('mousemove', handleMove);
-        document.addEventListener('mouseup', handleUp);
-
-        return () => {
-            document.removeEventListener('mousemove', handleMove);
-            document.removeEventListener('mouseup', handleUp);
-        };
-    }, [startX, handleMouseMove, handleMouseUp]);
-
-    useEffect(() => {
-        let animationFrameId;
-        const animateScroll = () => {
-            if (ref.current) {
-                ref.current.scrollTo({ left: scrollX, behavior: 'auto' });
-            }
-            animationFrameId = requestAnimationFrame(animateScroll);
-        };
-        animateScroll();
-
-        return () => {
-            cancelAnimationFrame(animationFrameId);
-        };
-    }, [scrollX]);
 
     return (
-        <section className="Work-section">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8  my-[50px] lg:my-[120px]">
-                <div className="flex flex-col lg:flex-row  justify-between lg:items-end mb-[25px] lg:mb-[60px]">
+        <section id="Work-section">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8  my-[50px] lg:my-[120px]" >
+                <div className="flex flex-col lg:flex-row  justify-between lg:items-end mb-[25px] lg:mb-[60px]" data-aos="fade-right">
                     <div className="mb-6 lg:mb-0">
                         <h1 className="text-[25px] md:text-[30px] font-bold text-headings mb-[10px] sm:mb-[15px]">Our Latest Projects on Workafy</h1>
                         <p className="text-[14px] md:text-[15px] text-headings  ">Tap on international projects from anywhere, anytime.</p>
@@ -158,29 +135,18 @@ const Work = () => {
 
                 </div>
 
-                <div
-                    ref={ref}
-                    className={`${style.corousel}  mb-[20px] cursor-grab`}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                >
-                    {ProjectsData.map((data, id) => (
-                        <div key={id} >
-                            <ProjectCard state={data.state} title={data.title} description={data.description} budget={data.budget}/>
-                        </div>
-                    ))}
+                <div className="slider-container" data-aos="fade-left">
+                    <Slider {...settings} className="gap-[20px]">
+                        {ProjectsData.map((data, id) => (
+                            <div key={id} className="px-2">
+                                <ProjectCard state={data.state} title={data.title} description={data.description} budget={data.budget} />
+                            </div>
+                        ))}
+                    </Slider>
                 </div>
 
-                {/* nav-icons */}
-                <div className="flex gap-5 text-[30px] justify-center items-center">
-                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX - 500)}><IoIosArrowRoundBack /></span>
-                    <span className="text-[20px]"><GoDotFill /></span>
-                    <span className="cursor-pointer" onClick={() => setScrollX(scrollX + 500)}><IoIosArrowRoundForward /></span>
-                </div>
+                
+
 
 
 
