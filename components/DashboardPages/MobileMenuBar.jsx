@@ -19,6 +19,7 @@ import { TbLogout2 } from "react-icons/tb";
 
 
 import { IoMenu } from "react-icons/io5";
+import Link from 'next/link';
 
 const MenuLinksData = [
     {
@@ -28,22 +29,22 @@ const MenuLinksData = [
     {
         icon: <RiHome6Line />,
         Link: "My Proposals",
-        redirect: "",
+        redirect: "/dashboard",
     },
     {
         icon: <LiaSuitcaseSolid />,
         Link: "Browse Projects",
-        redirect: ""
+        redirect: "/browse-project"
     },
     {
         icon: <PiStarBold />,
         Link: "Upgrade to Premium",
-        redirect: ""
+        redirect: "/subscription"
     },
     {
         icon: <PiWechatLogo />,
         Link: "Message",
-        redirect: ""
+        redirect: "/message/center"
     },
     {
         Link: "Manage",
@@ -52,27 +53,27 @@ const MenuLinksData = [
     {
         icon: <PiUserSquare />,
         Link: "My Profile",
-        redirect: ""
+        redirect: "/myprofile"
     },
     {
         icon: <IoNewspaperOutline />,
         Link: "Contracts",
-        redirect: ""
+        redirect: "/notifications/proposals"
     },
     {
         icon: <PiChatCenteredText />,
         Link: "Invites",
-        redirect: ""
+        redirect: "/notifications/invites"
     },
     {
         icon: <PiNewspaperClipping />,
         Link: "Terms",
-        redirect: ""
+        redirect: "/notifications/terms"
     },
     {
         icon: <VscTerminalUbuntu />,
         Link: "Status",
-        redirect: ""
+        redirect: "/notifications/status"
     },
 
     {
@@ -83,12 +84,12 @@ const MenuLinksData = [
     {
         icon: <PiBookmarksSimple />,
         Link: "Bookmark Projects",
-        redirect: ""
+        redirect: "/bookmark/jobs"
     },
     {
         icon: <BsBookmarkCheck />,
         Link: "Bookmark Clients",
-        redirect: ""
+        redirect: "/bookmark/clients"
     },
 
     {
@@ -99,22 +100,22 @@ const MenuLinksData = [
     {
         icon: <PiBank />,
         Link: "Bank Details",
-        redirect: ""
+        redirect: "/manage/bank"
     },
     {
         icon: <PiUserSquare />,
         Link: "Refferal",
-        redirect: ""
+        redirect: "/referral/users"
     },
     {
         icon: <LiaMoneyCheckAltSolid />,
         Link: "Transaction",
-        redirect: ""
+        redirect: "/my/transaction"
     },
     {
         icon: <TbLogout2 />,
         Link: "Logout",
-        redirect: ""
+        redirect: "/logout"
     },
 
 ]
@@ -141,7 +142,12 @@ const MobileMenuBar = () => {
                 <div >
                     <ul className="py-3  lg:py-6 lg:px-3 flex flex-col  " >
                         {MenuLinksData.map((data, id) => (
-                            <li key={id} className={`flex  gap-[15px] items-center font-medium text-customDarkGreen  ${data.style} ${data.icon ? 'hover:bg-black hover:text-white cursor-pointer rounded-md transition-all duration-400' : ''}  text-[13px] lg:text-[15px]   py-3  sm:py-4 px-5 `}><span className="text-[18px] lg:text-[22px] ">{data.icon} </span> {data.Link} </li>
+                            data.redirect ? (
+                                <Link href={data.redirect} key={id} ><li className={`flex  gap-[15px] items-center font-medium text-customDarkGreen  ${data.style} ${data.icon ? 'hover:bg-black hover:text-white cursor-pointer rounded-md transition-all duration-400' : ''}  text-[13px] lg:text-[15px]   py-3  sm:py-4 px-5 `}><span className="text-[18px] lg:text-[22px] ">{data.icon} </span> {data.Link} </li></Link>
+                            ) : (
+                                <li key={id} className={`flex  gap-[15px] items-center font-medium text-customDarkGreen  ${data.style} ${data.icon ? 'hover:bg-black hover:text-white cursor-pointer rounded-md transition-all duration-400' : ''}  text-[13px] lg:text-[15px]   py-3  sm:py-4 px-5 `}><span className="text-[18px] lg:text-[22px] ">{data.icon} </span> {data.Link} </li>
+                            )
+
                         ))}
                     </ul>
                 </div>
