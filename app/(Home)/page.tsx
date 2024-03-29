@@ -1,13 +1,13 @@
 "use client"
-import Hero from "../../components/Hero"
-import Feature from "../../components/Feature"
-import Banner from "../../components/Banner"
-import Category from "../../components/Category"
-import About from "../../components/About"
-import Work from "../../components/Work"
-import Banner2 from "../../components/Banner2"
-import Achievements from "../../components/Achievements"
-import Funfact from "../../components/Funfact"
+import Hero from "../../components/HomePage/Hero"
+import Feature from "../../components/HomePage/Feature"
+import Banner from "../../components/HomePage/Banner"
+import Category from "../../components/HomePage/Category"
+import About from "../../components/HomePage/About"
+import Work from "../../components/HomePage/Work"
+import Banner2 from "../../components/HomePage/Banner2"
+import Achievements from "../../components/HomePage/Achievements"
+import Funfact from "../../components/HomePage/Funfact"
 
 
 import { useEffect } from 'react'

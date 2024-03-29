@@ -15,6 +15,10 @@ import Loading from "../components/Loading"
 import Loading2 from "../components/Loading2"
 
 
+//globel context
+import { GlobalProvider } from "../GlobalContext"
+
+
 export const metadata: Metadata = {
   title: "Workafy",
   description: "Freelancing web platform",
@@ -27,19 +31,21 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <ClerkLoading>
-            <Loading />
-            {/* <Loading2 /> */}
-          </ClerkLoading>
+      <GlobalProvider>
+        <html lang="en">
+          <body className={inter.className}>
+            <ClerkLoading>
+              <Loading />
+              {/* <Loading2 /> */}
+            </ClerkLoading>
 
-          <ClerkLoaded>
-            {children}
-          </ClerkLoaded>
+            <ClerkLoaded>
+              {children}
+            </ClerkLoaded>
 
-        </body>
-      </html>
+          </body>
+        </html>
+      </GlobalProvider>
     </ClerkProvider>
   );
 }

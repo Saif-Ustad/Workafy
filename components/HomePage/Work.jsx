@@ -1,10 +1,10 @@
 
 
-import style from "../style/Work.module.scss"
+import style from "../../style/HomePageStyles/Work.module.scss"
 
 import { IoIosArrowRoundForward } from "react-icons/io";
 
-import ProjectCard from "../components/ProjectCard"
+import ProjectCard from "./ProjectCard"
 
 import Slider from "react-slick";
 

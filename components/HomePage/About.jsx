@@ -3,9 +3,10 @@ import { FaCircleCheck } from "react-icons/fa6";
 
 import { FaStar } from "react-icons/fa";
 import { GoArrowUpRight } from "react-icons/go";
-import Button from "./Button";
 
-import style from "../style/About.module.scss";
+
+
+import style from "../../style/HomePageStyles/About.module.scss";
 
 const FreelancersData = [
     {

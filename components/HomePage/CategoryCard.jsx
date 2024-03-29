@@ -1,4 +1,4 @@
-import style from "../style/CategoryCard.module.scss";
+import style from "../../style/HomePageStyles/CategoryCard.module.scss";
 
 const CategoryCard = ({icon, skillsCount, category}) => {
     return (

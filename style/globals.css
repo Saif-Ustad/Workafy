@@ -62,3 +62,25 @@ body {
 }
 
 
+
+
+/* scroll bar  */
+
+/* Change scrollbar width and color */
+/* .side_Menu_Bar::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+}
+
+.side_Menu_Bar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.side_Menu_Bar::-webkit-scrollbar-thumb {
+    background-color: #e9e9e9;
+    border-radius: 4px;
+}
+
+.side_Menu_Bar::-webkit-scrollbar-thumb:hover {
+    background: #8b8888;
+} */

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from './Button';
+import Button from '../Button';
 
 //icons
 import { IoSearchOutline } from 'react-icons/io5';
@@ -40,17 +40,17 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+  // useEffect(() => {
+  //   if (isMenuOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'auto';
+  //   }
 
-    return () => {
-      document.body.style.overflow = 'auto'; // Reset overflow on unmount or when isMenuOpen changes
-    };
-  }, [isMenuOpen]);
+  //   return () => {
+  //     document.body.style.overflow = 'auto'; // Reset overflow on unmount or when isMenuOpen changes
+  //   };
+  // }, [isMenuOpen]);
 
 
   return (

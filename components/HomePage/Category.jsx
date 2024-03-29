@@ -1,5 +1,5 @@
 import { IoIosArrowRoundForward } from "react-icons/io";
-import CategoryCard from "../components/CategoryCard";
+import CategoryCard from "./CategoryCard";
 
 import { FaMedal } from "react-icons/fa";
 

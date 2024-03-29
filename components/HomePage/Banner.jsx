@@ -4,7 +4,7 @@ import { MdHealthAndSafety } from "react-icons/md";
 import { FaCircleCheck } from "react-icons/fa6";
 import Image from "next/image";
 
-import style from "../style/Banner.module.scss"
+import style from "../../style/HomePageStyles/Banner.module.scss"
 
 
 const Banner = () => {

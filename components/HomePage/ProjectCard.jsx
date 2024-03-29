@@ -1,4 +1,4 @@
-import style from "../style/ProjectCard.module.scss"
+import style from "../../style/HomePageStyles/ProjectCard.module.scss"
 
 import { FaRegStar } from "react-icons/fa";
 

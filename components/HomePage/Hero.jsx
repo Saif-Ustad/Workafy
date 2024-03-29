@@ -1,6 +1,6 @@
 
 
-import styles from "../style/Hero.module.scss";
+import styles from "../../style/HomePageStyles/Hero.module.scss";
 // import  "../style/slick_dots_hero.scss";
 
 
@@ -11,7 +11,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 import Slider from "react-slick";
 
 
-import Button from './Button';
+import Button from '../Button';
 
 
 const HeroData = [
@@ -30,7 +30,7 @@ const Hero = () => {
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-        speed: 800,
+        speed: 500,
         swipeToSlide: true,
         prevArrow: <></>,
         nextArrow: <></>,
@@ -77,6 +77,12 @@ const Hero = () => {
                     </Slider>
                 </div>
             </div>
+
+            {/* floating images */}
+            <>
+                <Image src="/Images/hero-floating-1.png" alt="floating-img" width={100} height={100} className={` ${styles.spin_right}  hidden lg:block absolute left-[-8%] top-[3%]`} />
+                <Image src="/Images/hero-floating-2.png" alt="floating-img" width={100} height={100} className={` ${styles.bounceY} hidden lg:block absolute left-[40%] top-[10%]`} />
+            </>
         </div>
     )
 

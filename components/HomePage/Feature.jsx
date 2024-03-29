@@ -1,4 +1,4 @@
-import FeatureCard from "../components/FeatureCard";
+import FeatureCard from "./FeatureCard";
 import { LiaLaptopCodeSolid } from "react-icons/lia";
 import { HiMiniCodeBracket } from "react-icons/hi2";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";

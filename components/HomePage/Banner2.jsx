@@ -2,7 +2,7 @@ import { GrWorkshop } from "react-icons/gr";
 import { GrUserExpert } from "react-icons/gr";
 import { FiUserCheck } from "react-icons/fi";
 
-import style from "../style/Banner2.module.scss";
+import style from "../../style/HomePageStyles/Banner2.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 
