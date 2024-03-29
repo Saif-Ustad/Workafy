@@ -1,12 +1,15 @@
-import ToogleButton from "../../../../components/ToggleButton"
+"use client"
+
+import { useState } from "react";
+import ToggleButton from "../../../../components/ToggleButton"
 
 import { GoArrowUpRight } from "react-icons/go";
+import Footer from "@/components/DashboardPages/Footer";
 
 const SubscriptionCardData = [
   {
     MonthlyPrice: "₹399",
     YearlyPrice: "₹3499",
-    duration: "monthly",
     title: "Workafy Silver",
     subTitle: "Rank Among Top 1% Freelancers",
     description: [
@@ -25,7 +28,6 @@ const SubscriptionCardData = [
   {
     MonthlyPrice: "Free",
     YearlyPrice: "Free",
-    duration: "monthly",
     title: "Workafy Basic",
     subTitle: "Standard Ranking Among 3,00,000+ Freelancers",
     description: [
@@ -43,7 +45,6 @@ const SubscriptionCardData = [
   {
     MonthlyPrice: "₹999",
     YearlyPrice: "₹9999",
-    duration: "monthly",
     title: "Workafy Gold",
     subTitle: "Rank in Top 0.1% Freelancers",
     description: [
@@ -61,22 +62,26 @@ const SubscriptionCardData = [
   },
 ]
 
-const page = () => {
+const Page = () => {
+
+  const [isYearly, setIsYearly] = useState(false);
+
   return (
+    <>
     <div className="bg-[#f1fcfa] h-[90vh] overflow-y-scroll flex flex-col gap-[20px] items-center text-center p-4 lg:p-8">
       <div>
         <h1 className="text-[20px] md:text-[30px] font-bold text-headings mb-[12px] md:mb-[16px] tracking-[1.5px]">Membership Plans</h1>
         <p className="text-[12px] sm:text-[15px] text-headings  mb-[30px]">Buy Subscription and increase chances of getting clients upto 20x</p>
         <div className=" text-[12px] sm:text-[15px] text-headings  mb-[20px] md:mb-[40px] flex justify-center gap-[20px] items-center">
           <span>Billed Monthly</span>
-          <span><ToogleButton /></span>
+          <span><ToggleButton onToggle={setIsYearly} /></span>
           <span>Billed Yearly</span>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[30px]">
           {SubscriptionCardData.map((data, id) => (
             <div key={id} className="bg-white flex flex-col items-center p-[30px] max-w-[430px] rounded-[15px] shadow-md hover:translate-y-[-10px] hover:transition-transform ">
-                <h1 className="text-[20px] md:text-[35px] font-bold text-headings mb-[10px] max-w-[300px]">{data.MonthlyPrice} <span className="text-[12px] sm:text-[15px] font-normal text-[#6b7177]  mb-[10px]">/ {data.duration}</span></h1>
+                <h1 className="text-[20px] md:text-[35px] font-bold text-headings mb-[10px] max-w-[300px]">{isYearly ? data.YearlyPrice : data.MonthlyPrice} <span className="text-[12px] sm:text-[15px] font-normal text-[#6b7177]  mb-[10px]">/ {isYearly ? "yearly" : "monthly"}</span></h1>
                 <h2 className="text-[14px] md:text-[18px] font-medium text-headings mb-[12px] md:mb-[16px]">{data.title}</h2>
                 <h3 className="text-[15px] md:text-[17px] font-bold text-headings mb-[12px] md:mb-[16px]">{data.subTitle}</h3>
                 <ul className="text-[12px] sm:text-[15px] text-headings font-medium mb-[30px]"> 
@@ -88,8 +93,12 @@ const page = () => {
             </div>
           ))}
       </div>
+      <Footer />
     </div>
+
+    </>
+
   )
 }
 
-export default page
+export default Page

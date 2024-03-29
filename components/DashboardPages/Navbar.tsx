@@ -66,7 +66,7 @@ const { isSideMenuOpen, setIsSideMenuOpen } = useContext(GlobalContext);
             {/* <Link href={'/'} >
               <Image src="/Images/workafy-logo.svg" alt="logo" width={120} height={50} />
             </Link> */}
-            <a href='/'>
+            <a href='/dashboard'>
               <Image src="/Images/workafy-logo.svg" alt="logo" width={120} height={50} />
             </a>
           </li>
@@ -96,7 +96,7 @@ const { isSideMenuOpen, setIsSideMenuOpen } = useContext(GlobalContext);
             <HiOutlineMenuAlt3 />
           </li>
 
-          <li className='hidden lg:block '><UserButton /></li>
+          <li className='hidden lg:block '><UserButton  afterSignOutUrl='/'/></li>
 
 
         </ul>

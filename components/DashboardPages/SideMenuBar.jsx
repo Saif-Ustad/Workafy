@@ -138,7 +138,7 @@ const SideMenuBar = () => {
                         data.redirect ? (
                             <Link href={data.redirect} key={id} ><li className={`flex  gap-[15px] items-center font-medium text-customDarkGreen  ${data.style} ${data.icon ? 'hover:bg-black hover:text-white cursor-pointer transition-all duration-400 rounded-md' : ''} text-[15px] py-4 px-5`}><span className="text-[22px] ">{data.icon} </span> {data.Link} </li></Link>
                         ) : (
-                            <li className={`flex  gap-[15px] items-center font-medium text-customDarkGreen  ${data.style} ${data.icon ? 'hover:bg-black hover:text-white cursor-pointer transition-all duration-400 rounded-md' : ''} text-[15px] py-4 px-5`}><span className="text-[22px] ">{data.icon} </span> {data.Link} </li>
+                            <li key={id} className={`flex  gap-[15px] items-center font-medium text-customDarkGreen  ${data.style} ${data.icon ? 'hover:bg-black hover:text-white cursor-pointer transition-all duration-400 rounded-md' : ''} text-[15px] py-4 px-5`}><span className="text-[22px] ">{data.icon} </span> {data.Link} </li>
                         )
 
                     ))}
