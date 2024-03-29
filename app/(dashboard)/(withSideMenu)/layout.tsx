@@ -12,17 +12,6 @@ import { GlobalContext } from '../../../GlobalContext';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 
-    
-  //to remove scrollbar to pages
-  useEffect(() => {
-    document.documentElement.classList.add('overflow-hidden');
-    document.body.classList.add('overflow-hidden');
-    
-    return () => {
-      document.documentElement.classList.remove('overflow-hidden');
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, []);
 
   const { isSideMenuOpen } = useContext(GlobalContext);
 
