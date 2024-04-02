@@ -1,4 +1,6 @@
 import Image from "next/image"
+import Footer from "@/components/DashboardPages/Footer"
+
 import { FaEye } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { FaRegCalendarCheck } from "react-icons/fa6";
@@ -22,10 +24,13 @@ import { RiNewspaperLine } from "react-icons/ri";
 
 
 
+
+
 const page = () => {
   return (
+    <>
     <div className='myProfile-page bg-[#f1fcfa] h-[90vh] overflow-y-scroll'>
-      <div className='container mx-auto px-4 sm:px-6 lg:px-8 pt-[30px] flex flex-col lg:flex-row gap-[25px]'>
+      <div className='container mx-auto px-4 sm:px-6 lg:px-8 py-[30px] flex flex-col lg:flex-row gap-[25px]'>
 
         <div className='lg:w-[70%] flex flex-col gap-[25px]'>
 
@@ -215,7 +220,7 @@ const page = () => {
               </div>
             </div>
 
-            <div className="text-headings " >
+            <div className="text-headings text-[14px]  xl:text-[16px]" >
               <div className="flex gap-[10px] items-center mb-[5px]">
                 <h3>Please Add Profile Picture </h3>
                 <span><FaPencilAlt /></span>
@@ -243,7 +248,7 @@ const page = () => {
             <div>
               <div className="flex justify-between items-center text-headings mb-[12px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[20px]"><FaRegStar /></span>
+                  <span className="text-[14px]  xl:text-[16px]"><FaRegStar /></span>
                   <span>Project Rating</span>
                 </div>
                 <h2 className="font-medium">0.0 </h2>
@@ -252,7 +257,7 @@ const page = () => {
 
               <div className="flex justify-between items-center text-headings mb-[12px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[20px]"><LuCrown /></span>
+                  <span className="text-[14px]  xl:text-[16px]"><LuCrown /></span>
                   <span>Projects Completed</span>
                 </div>
                 <h2 className="font-medium">0</h2>
@@ -261,7 +266,7 @@ const page = () => {
 
               <div className="flex justify-between items-center text-headings mb-[12px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[20px]"><LuCalendarDays /></span>
+                  <span className="text-[14px]  xl:text-[16px]"><LuCalendarDays /></span>
                   <span>Lifetime Earnings</span>
                 </div>
                 <h2 className="font-medium">$0.00</h2>
@@ -270,7 +275,7 @@ const page = () => {
 
               <div className="flex justify-between items-center text-headings mb-[12px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[20px]"><TbPigMoney /></span>
+                  <span className="text-[14px]  xl:text-[16px]"><TbPigMoney /></span>
                   <span>Total Earnings</span>
                 </div>
                 <h2 className="font-medium">$0.00</h2>
@@ -279,7 +284,7 @@ const page = () => {
 
               <div className="flex justify-between items-center text-headings mb-[12px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[20px]"><MdOutlineGTranslate /></span>
+                  <span className="text-[14px]  xl:text-[16px]"><MdOutlineGTranslate /></span>
                   <span>Total Clients</span>
                 </div>
                 <h2 className="font-medium">0</h2>
@@ -288,7 +293,7 @@ const page = () => {
 
               <div className="flex justify-between items-center text-headings mb-[12px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[20px]"><RiNewspaperLine /></span>
+                  <span className="text-[14px]  xl:text-[16px]"><RiNewspaperLine /></span>
                   <span>Feedbacks Received</span>
                 </div>
                 <h2 className="font-medium">0</h2>
@@ -297,7 +302,7 @@ const page = () => {
 
               <div className="flex justify-between items-center text-headings mb-[15px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[20px]"><FaRegCalendarCheck /></span>
+                  <span className="text-[14px]  xl:text-[16px]"><FaRegCalendarCheck /></span>
                   <span>Feedbacks Given</span>
                 </div>
                 <h2 className="font-medium">0</h2>
@@ -360,7 +365,10 @@ const page = () => {
 
 
       </div>
+      <div className="ml-[20px]"><Footer /></div>
     </div>
+    
+    </>
   )
 }
 

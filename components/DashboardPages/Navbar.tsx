@@ -23,7 +23,7 @@ import { UserButton, useAuth } from "@clerk/nextjs";
 import { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext';
 
-const Navbar = () => {
+const Navbar = ({ hideMenuIcon }: { hideMenuIcon: boolean }) => {
   const { userId } = useAuth();
   const isAuth = !!userId;
 
@@ -49,11 +49,11 @@ const Navbar = () => {
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
-} ;
+  };
 
 
 
-const { isSideMenuOpen, setIsSideMenuOpen } = useContext(GlobalContext);
+  const { isSideMenuOpen, setIsSideMenuOpen } = useContext(GlobalContext);
 
 
 
@@ -70,7 +70,13 @@ const { isSideMenuOpen, setIsSideMenuOpen } = useContext(GlobalContext);
               <Image src="/Images/workafy-logo.svg" alt="logo" width={120} height={50} />
             </a>
           </li>
-          <li className='hidden lg:block text-[22px]' onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}><HiOutlineMenuAlt2 /></li>
+
+          {!hideMenuIcon && (
+            <li className="hidden lg:block text-[22px]" onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
+              <HiOutlineMenuAlt2 />
+            </li>
+          )}
+
         </ul>
       </div>
       <div className="flex items-center">
@@ -96,7 +102,7 @@ const { isSideMenuOpen, setIsSideMenuOpen } = useContext(GlobalContext);
             <HiOutlineMenuAlt3 />
           </li>
 
-          <li className='hidden lg:block '><UserButton  afterSignOutUrl='/'/></li>
+          <li className='hidden lg:block '><UserButton afterSignOutUrl='/' /></li>
 
 
         </ul>

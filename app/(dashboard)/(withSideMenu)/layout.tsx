@@ -8,6 +8,7 @@ import { useEffect } from "react";
 //globle context
 import { useContext } from 'react';
 import { GlobalContext } from '../../../GlobalContext';
+import Navbar from "@/components/DashboardPages/Navbar";
 
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -17,6 +18,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
 
     return (
+        <>
+        <Navbar hideMenuIcon={false}/>
         <div className="flex flex-col lg:flex-row bg-[#f4f4f4] lg:bg-white">
             <div className={` hidden  ${isSideMenuOpen? "lg:block" : "hidden"}`}><SideMenuBar /></div>
             <div className="lg:hidden m-[20px]"><MobileMenuBar /></div>
@@ -24,6 +27,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                  {children}
             </div>
         </div>
+        </>
 
     )
 }
