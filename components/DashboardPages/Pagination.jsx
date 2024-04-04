@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from "next/navigation";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Pagination } from '@mui/material';
 
 import { CiCalendarDate } from "react-icons/ci";
@@ -41,7 +41,11 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const projectsToShow = projects.slice(startIndex, endIndex);
+  const projectsToShow = useMemo(() => projects.slice(startIndex, startIndex + itemsPerPage), [
+    projects,
+    startIndex,
+    itemsPerPage,
+  ]);
 
   return (
     <div>
@@ -100,7 +104,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
           variant="outlined"
           shape="rounded"
         />
-         <div className='text-[12px] md:text-[14px]  text-headings'>{`${startIndex} - ${endIndex} of ${projects.length}+ projects available`}</div>
+         <div className='text-[12px] md:text-[14px]  text-headings'>{`${startIndex} - ${startIndex + projectsToShow.length} of ${projects.length}+ projects available`}</div>
       </div>
     </div>
 
