@@ -30,7 +30,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
     if (page && !isNaN(page)) {
       setCurrentPage(parseInt(page));
     }
-  }, [router.query]);
+  }, [router.query, searchParams]);
     
 
 
@@ -45,8 +45,8 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
 
   return (
     <div>
-      {projectsToShow.map((project, index) => (
-        <div key={index} className="my-[25px] p-[25px] sm:p-[40px] border rounded-lg flex flex-col md:flex-row gap-[25px] md:gap-0 ">
+      {projectsToShow.map((project, id) => (
+        <div key={id} className="my-[25px] p-[25px] sm:p-[40px] border rounded-lg flex flex-col md:flex-row gap-[25px] md:gap-0 ">
 
           <div className='md:w-[68%] flex flex-col justify-center gap-[15px] md:pr-[25px] md:border-r border-gray-200'>
 

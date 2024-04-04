@@ -1,7 +1,4 @@
-
 "use client"
-
-
 import PaginationComponent from '@/components/DashboardPages/Pagination';
 import Image from 'next/image';
 
