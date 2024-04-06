@@ -12,6 +12,8 @@ import { CiLocationOn } from "react-icons/ci";
 import { GoArrowUpRight } from "react-icons/go";
 import { LuBookmark } from "react-icons/lu";
 
+import Link from 'next/link';
+
 
 const PaginationComponent = ({ projects, itemsPerPage }) => {
 
@@ -54,7 +56,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
 
           <div className='md:w-[68%] flex flex-col justify-center gap-[15px] md:pr-[25px] md:border-r border-gray-200'>
 
-            <h1 className="text-[18px] text-headings md:text-[19px] font-medium  ">{project.title}</h1>
+            <Link href={`/browse-project/${project.id}`} ><h1 className="text-[18px] text-headings md:text-[19px] font-medium  ">{project.title}</h1></Link>
 
             <div className='flex flex-wrap '>
               <div className="flex items-center gap-[10px] border-r border-gray-200 px-[15px]">

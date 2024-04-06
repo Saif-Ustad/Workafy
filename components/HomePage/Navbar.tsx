@@ -87,7 +87,7 @@ const Navbar = () => {
             <HiOutlineMenuAlt3 />
           </li>
           <li className='hidden lg:block'>
-            <Link href={'/'} >
+            <Link href={'/post-your-job'} >
               <Button buttonText="Assign Work" btnColor="customRed" />
             </Link>
           </li>

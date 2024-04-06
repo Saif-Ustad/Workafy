@@ -85,7 +85,7 @@ const Page = () => {
 
 
     
-      <div className='container   sm:p-[20px]  mx-auto flex flex-col xl:flex-row mt-[20px] gap-[20px] '>
+      <div className='container   sm:p-[20px]  mx-auto flex flex-col xl:flex-row mt-[20px] gap-[30px] sm:gap-[20px] '>
         <div className='xl:w-[25%]   '>
 
             {/* //filter */}
@@ -144,45 +144,45 @@ const Page = () => {
 
           <div className='flex flex-col gap-[10px] items-center border border-gray-200 rounded-[15px] shadow-sm p-[20px]'>
             <Image src={"/Images/badge.png"} alt='badge' className='mb-[10px]' width={100} height={100} />
-            <h2 className='text-[16px] text-customDarkGreen font-medium'> Get projects 20X faster!</h2>
-            <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-full  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white">Go Premium<span className="text-[20px]"><GoArrowUpRight /></span></div>
+            <h2 className='text-[14px] sm:text-[16px] text-customDarkGreen font-medium'> Get projects 20X faster!</h2>
+            <div className="py-[13px] sm:py-[15px] bg-[#f1fcfa]  w-full rounded-full  font-semibold text-[13px] sm:text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white">Go Premium<span className="text-[20px]"><GoArrowUpRight /></span></div>
 
             <hr className='w-full my-[10px]' />
 
-            <ul className='flex flex-col gap-[20px]'>
+            <ul className='flex flex-col gap-[15px] sm:gap-[20px]'>
               <li className='flex items-center gap-[14px]'>
                 <span className='bg-[#5BBB7B26] rounded-full p-1 text-[12px] text-[#5bbb7b]'><MdCheck /></span>
-                <span className='text-customDarkGreen text-[15px] sm:text-[16px]'>Top Listing in Client Searches</span>
+                <span className='text-customDarkGreen text-[14px] sm:text-[16px]'>Top Listing in Client Searches</span>
               </li>
 
               <li className='flex items-center gap-[14px]'>
                 <span className='bg-[#5BBB7B26] rounded-full p-1 text-[12px] text-[#5bbb7b]'><MdCheck /></span>
-                <span className='text-customDarkGreen text-[15px] sm:text-[16px]'>Direct Recommendations</span>
+                <span className='text-customDarkGreen text-[14px] sm:text-[16px]'>Direct Recommendations</span>
               </li>
 
               <li className='flex items-center gap-[14px]'>
                 <span className='bg-[#5BBB7B26] rounded-full p-1 text-[12px] text-[#5bbb7b]'><MdCheck /></span>
-                <span className='text-customDarkGreen text-[15px] sm:text-[16px]'>Apply on 200 Projects/month</span>
+                <span className='text-customDarkGreen text-[14px] sm:text-[16px]'>Apply on 200 Projects/month</span>
               </li>
 
               <li className='flex items-center gap-[14px]'>
                 <span className='bg-[#5BBB7B26] rounded-full p-1 text-[12px] text-[#5bbb7b]'><MdCheck /></span>
-                <span className='text-customDarkGreen text-[15px] sm:text-[16px]'>Workafy Premium Badge</span>
+                <span className='text-customDarkGreen text-[14px] sm:text-[16px]'>Workafy Premium Badge</span>
               </li>
 
               <li className='flex items-center gap-[14px]'>
                 <span className='bg-[#5BBB7B26] rounded-full p-1 text-[12px] text-[#5bbb7b]'><MdCheck /></span>
-                <span className='text-customDarkGreen text-[15px] sm:text-[16px]'>Work in All Skill Categories</span>
+                <span className='text-customDarkGreen text-[14px] sm:text-[16px]'>Work in All Skill Categories</span>
               </li>
 
               <li className='flex items-center gap-[14px]'>
                 <span className='bg-[#5BBB7B26] rounded-full p-1 text-[12px] text-[#5bbb7b]'><MdCheck /></span>
-                <span className='text-customDarkGreen text-[15px] sm:text-[16px]'>Weekly Profile Reviews</span>
+                <span className='text-customDarkGreen text-[14px] sm:text-[16px]'>Weekly Profile Reviews</span>
               </li>
 
               <li className='flex items-center gap-[14px]'>
                 <span className='bg-[#5BBB7B26] rounded-full p-1 text-[12px] text-[#5bbb7b]'><MdCheck /></span>
-                <span className='text-customDarkGreen text-[15px] sm:text-[16px]'>Workafy Priority Support</span>
+                <span className='text-customDarkGreen text-[14px] sm:text-[16px]'>Workafy Priority Support</span>
               </li>
             </ul>
           </div>
