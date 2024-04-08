@@ -17,7 +17,7 @@ import 'aos/dist/aos.css';
 //react-slick
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { createProfile } from "@/lib/actions/profile.action"
+
 
 const Home = () => {
 

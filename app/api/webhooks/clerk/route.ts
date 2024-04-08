@@ -7,7 +7,8 @@ import { Webhook } from "svix";
 
 import { createUser } from "@/lib/actions/user.action";
 
-import { createProfile } from "@/lib/actions/profile.action";
+import { createPublicProfile } from "@/lib/actions/publicProfile.action";
+import { createPrivateProfile } from "@/lib/actions/privateProile.action";
 
 
 
@@ -82,7 +83,8 @@ export async function POST(req: Request) {
 
     if (newUser) {
 
-      const newProfile = await createProfile({ Name: newUser.username, freelancerId: newUser._id });
+      const newPublicProfile = await createPublicProfile({ freelancerId: newUser._id });
+      const newPrivateProfile = await createPrivateProfile({ freelancerId: newUser._id });
       
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {

@@ -84,7 +84,7 @@ const Page = () => {
 
 
   // Add a new state variable to track the sorting order
-  const [sortOrder, setSortOrder] = useState('desc'); 
+  const [sortOrder, setSortOrder] = useState('desc');
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -147,7 +147,7 @@ const Page = () => {
   }, [selectedCategory, selectedBudget, searchQuery, projectData, sortOrder]);
 
 
-  
+
 
   return (
     // <div>
@@ -298,7 +298,13 @@ const Page = () => {
           </div>
 
           <div>
-            <PaginationComponent projects={filteredProjects} itemsPerPage={itemsPerPage} />
+            {filteredProjects.length === 0 ? (
+              <div>Loading...</div>
+            ) : (
+              <PaginationComponent projects={filteredProjects} itemsPerPage={itemsPerPage} />
+            )}
+
+
           </div>
 
         </div>

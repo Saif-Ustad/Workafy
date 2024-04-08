@@ -12,28 +12,97 @@ import { CiLocationOn } from "react-icons/ci";
 import { GoArrowUpRight } from "react-icons/go";
 import { LuBookmark } from "react-icons/lu";
 
+import { addToBookmarkProjects } from "@/lib/actions/privateProile.action"
+import { removeBookmarkProject } from "@/lib/actions/privateProile.action"
+import { fetchBookmarks } from "@/lib/actions/privateProile.action"
+
 import Link from 'next/link';
+
+import { useUser } from '@clerk/clerk-react';
 
 
 const PaginationComponent = ({ projects, itemsPerPage }) => {
 
   const router = useRouter();
 
+  const { user } = useUser();
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      // Fetch the userId from user's metadata
+      const { publicMetadata } = user;
+      const { userId } = publicMetadata;
+      setUserId(userId);
+    }
+  }, [user]);
+
+
+  const [bookmarkedProjects, setBookmarkedProjects] = useState([]);
+  
+
+  useEffect(() => {
+    const fetchBookmarkedProjects = async () => {
+      try {
+        const bookmarkedProjects = await fetchBookmarks({ freelancerId: userId });
+        setBookmarkedProjects(bookmarkedProjects);
+      } catch (error) {
+        console.error('Failed to fetch bookmarked projects:', error);
+      }
+    };
+
+    if (userId) {
+      console.log(userId);
+      fetchBookmarkedProjects();
+    }
+  }, [userId]);
+
+  const handleAddToBookmarks = async (projectId) => {
+    try {
+      await addToBookmarkProjects({ freelancerId: userId, projectId });
+      console.log('Project added to bookmarks!');
+
+      const response = await fetchBookmarks({ freelancerId: userId });
+      const data = await response.json();
+      setBookmarkedProjects(data);
+    } catch (error) {
+      console.error('Failed to add project to bookmarks:', error);
+    }
+  };
+
+  const handleRemoveFromSaved = async (projectId) => {
+    try {
+      await removeBookmarkProject({ freelancerId: userId, projectId });
+      console.log('Project removed from bookmarks!');
+
+      const response = await fetchBookmarks({ freelancerId: userId });
+      const data = await response.json();
+      setBookmarkedProjects(data);
+    } catch (error) {
+      console.error('Failed to remove project from bookmarks:', error);
+    }
+  };
+
+
+
+
+
+
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(projects.length / itemsPerPage);
 
   const searchParams = useSearchParams();
 
-  
 
-// Set initial currentPage to 1 (not using router.query)
+
+  // Set initial currentPage to 1 (not using router.query)
   useEffect(() => {
     const page = searchParams.get("page");
     if (page && !isNaN(page)) {
       setCurrentPage(parseInt(page));
     }
   }, [router.query, searchParams]);
-    
+
 
 
   const handlePageChange = (event, value) => {
@@ -91,7 +160,19 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
             </div>
 
             <Link href={`/browse-project/${project._id}`} ><div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white mb-[10px]">Apply<span className="text-[20px]"><GoArrowUpRight /></span></div></Link>
-            <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white"><span className="text-[20px]"><LuBookmark /></span>Save for later</div>
+            {/* <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white" onClick={() => handleAddToBookmarks(project._id)}><span className="text-[20px]"><LuBookmark /></span>Save for later</div> */}
+
+
+            {/* Save for later button */}
+            {bookmarkedProjects.find((p) => p._id === project._id) ? (
+              <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white" onClick={() => handleRemoveFromSaved(project._id)}>
+                <span className="text-[20px]"><LuBookmark /></span>Remove from Saved
+              </div>
+            ) : (
+              <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white" onClick={() => handleAddToBookmarks(project._id)}>
+                <span className="text-[20px]"><LuBookmark /></span>Save for later
+              </div>
+            )}
 
           </div>
 
@@ -106,7 +187,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
           variant="outlined"
           shape="rounded"
         />
-         <div className='text-[12px] md:text-[14px]  text-headings'>{`${startIndex} - ${startIndex + projectsToShow.length} of ${projects.length}+ projects available`}</div>
+        <div className='text-[12px] md:text-[14px]  text-headings'>{`${startIndex} - ${startIndex + projectsToShow.length} of ${projects.length}+ projects available`}</div>
       </div>
     </div>
 

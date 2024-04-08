@@ -52,9 +52,9 @@ const ProjectSchema = new Schema({
     },
 });
 
-const ProfileSchema = new Schema({
+const PublicProfileSchema = new Schema({
 
-    freelancerId: {
+    FreelancerId: {
         type: String,
     },
     Name: {
@@ -90,7 +90,7 @@ const ProfileSchema = new Schema({
         Feedbacks_Received: Number,
         Feedbacks_Given: Number
     },
-    availability: {
+    Availability: {
         per_week: Number,
         per_day: Number,
     },
@@ -99,6 +99,6 @@ const ProfileSchema = new Schema({
     }
 });
 
-const Profile = models?.profile || model("profile", ProfileSchema);
+const PublicProfile = models?.publicProfile || model("publicProfile", PublicProfileSchema);
 
-export default Profile;
+export default PublicProfile;
