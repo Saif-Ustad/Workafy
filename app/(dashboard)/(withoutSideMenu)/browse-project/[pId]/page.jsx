@@ -10,8 +10,35 @@ import Image from "next/image";
 
 import { MdCheck } from "react-icons/md";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const Page = () => {
+
+import { getProjectById } from '@/lib/actions/project.action';
+
+
+const Page = ({ params }) => {
+
+
+    const pId = params.pId;
+
+    const [project, setProject] = useState(null);
+
+    useEffect(() => {
+        const fetchProject = async () => {
+            if (pId) {
+                const fetchedProject = await getProjectById(pId);
+                setProject(fetchedProject);
+            }
+        };
+    
+        fetchProject();
+    }, [pId]);
+
+    if (!project) {
+        return <div className="container mx-auto text-center">Loading...</div>;
+    }
+
+    // console.log(project);
 
 
     const generateNewInputFile = () => {
@@ -42,16 +69,16 @@ const Page = () => {
                 <div className="flex flex-col lg:flex-row gap-[30px] xl:gap-[100px]">
                     <div className="lg:w-[70%] flex flex-col gap-[25px]">
                         <div className="bg-white p-[20px] sm:p-[35px] rounded-[15px] border border-[#e9e9e9] shadow-sm">
-                            <h1 className="text-[24px] md:text-[32px] font-bold text-headings  max-w-[800px] mb-[20px]">Telegram/Discord Bot for Ticket Monitoring & Automation</h1>
+                            <h1 className="text-[24px] md:text-[32px] font-bold text-headings  max-w-[800px] mb-[20px]">{project.projectName}</h1>
 
                             <div className="flex gap-[20px] flex-wrap text-headings text-[14px] sm:text-[16px] font-medium">
                                 <div className="flex items-center gap-[10px] ">
                                     <span className="text-[15px] sm:text-[17px]"><GrLocation /></span>
-                                    <span>United States</span>
+                                    <span>{project.location}</span>
                                 </div>
                                 <div className="flex items-center gap-[10px]">
                                     <span className="text-[17px]"><TbCalendarFilled /></span>
-                                    <span>Posted on : 4 Apr 2024</span>
+                                    <span>Posted on : {project.date}</span>
                                 </div>
                             </div>
 
@@ -64,7 +91,7 @@ const Page = () => {
                                         <span className="absolute opacity-[85%] right-[-20px] top-[10px] w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] rounded-full bg-[#fbf7ed]"></span>
                                     </div>
                                     <div className="flex flex-col gap-[5px]">
-                                        <span className="font-medium">IT, Web and Mobile</span>
+                                        <span className="font-medium">{project.category}</span>
                                         <span className="text-[15px] sm:text-[16px]">Skill Category</span>
                                     </div>
                                 </div>
@@ -76,7 +103,7 @@ const Page = () => {
                                     </div>
 
                                     <div className="flex flex-col gap-[5px]">
-                                        <span className="font-medium">Scripts & Utilities</span>
+                                        <span className="font-medium">{project.subCategory}</span>
                                         <span className="text-[15px] sm:text-[16px]">Sub-Category</span>
                                     </div>
                                 </div>
@@ -84,21 +111,23 @@ const Page = () => {
                         </div>
 
                         <div className="bg-white p-[20px] sm:p-[35px] rounded-[15px] border border-[#e9e9e9] shadow-sm flex flex-col items-center">
-                            <h1 className="text-[22px] md:text-[28px] font-bold text-headings  mb-[15px]">Total Budget: $180</h1>
-                            <h2 className="text-headings font-medium text-[16px] sm:text-[18px] mb-[10px]">INR : ₹15300</h2>
+                            <h1 className="text-[22px] md:text-[28px] font-bold text-headings  mb-[15px]">Total Budget: ${project.budget_USD}</h1>
+                            <h2 className="text-headings font-medium text-[16px] sm:text-[18px] mb-[10px]">INR : ₹{project.budget_INR}</h2>
                             <div className="py-[11px] sm:py-[12px] bg-customDarkGreen  w-full rounded-[5px] text-white font-semibold text-[13px] sm:text-[15px]  hover:bg-customGreen cursor-pointer"><Link href={"#proposal_form"} className="flex gap-2 items-center justify-center"> Write a Proposal <span className="text-[20px]"><GoArrowUpRight /></span></Link></div>
                         </div>
 
 
                         <div className="bg-white p-[20px] sm:p-[35px] rounded-[15px] border border-[#e9e9e9] shadow-sm">
                             <h2 className="text-headings font-medium text-[18px] sm:text-[20px] mb-[10px]">Project Description</h2>
-                            <p className="text-[13px] sm:text-[15px]">I am seeking a skilled developer capable of creating a Telegram/Discord bot specifically designed to monitor ticket availability on Webook.com . The bot&apos;s primary functions should include:<br /><br />
+                            {/* <p className="text-[13px] sm:text-[15px]">I am seeking a skilled developer capable of creating a Telegram/Discord bot specifically designed to monitor ticket availability on Webook.com . The bot&apos;s primary functions should include:<br /><br />
 
                                 - Regularly monitoring the website for ticket availability (this should be both event-triggered and at regular intervals)<br />
                                 - Providing prompt notifications and calls (important) regarding ticket availability<br />
                                 - (if possible) Automating ticket holding/purchasing when designated tickets become available<br /><br />
 
-                                The successful candidate should have previous experience in bot development, specifically with regard to ticket sales and availability. Familiarity with the Telegram API and Webook&apos;s system is a plus, but primarily, a thorough understanding of how to automate processes effectively and efficiently is a must.</p>
+                                The successful candidate should have previous experience in bot development, specifically with regard to ticket sales and availability. Familiarity with the Telegram API and Webook&apos;s system is a plus, but primarily, a thorough understanding of how to automate processes effectively and efficiently is a must.</p> */}
+
+                            <p className="text-[13px] sm:text-[15px]">{project.description}</p>
                         </div>
 
 

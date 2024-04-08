@@ -56,7 +56,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
 
           <div className='md:w-[68%] flex flex-col justify-center gap-[15px] md:pr-[25px] md:border-r border-gray-200'>
 
-            <Link href={`/browse-project/${project.id}`} ><h1 className="text-[18px] text-headings md:text-[19px] font-medium  ">{project.title}</h1></Link>
+            <Link href={`/browse-project/${project._id}`} ><h1 className="text-[18px] text-headings md:text-[19px] font-medium  ">{project.projectName}</h1></Link>
 
             <div className='flex flex-wrap '>
               <div className="flex items-center gap-[10px] border-r border-gray-200 px-[15px]">
@@ -82,15 +82,15 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
 
           <div className='md:w-[32%] md:pl-[25px]'>
             <div className='flex flex-col gap-[5px] md:items-end mb-[15px]'>
-              <h1 className="text-[16px] text-headings md:text-[17px] font-medium  ">Budget : {project.budget}</h1>
-              <h2 className="text-[15px] text-headings md:text-[16px] font-medium  ">INR: {project.budgetINR}</h2>
+              <h1 className="text-[16px] text-headings md:text-[17px] font-medium  ">Budget : ${project.budget_USD}</h1>
+              <h2 className="text-[15px] text-headings md:text-[16px] font-medium  ">INR: ₹{project.budget_INR}</h2>
               <div className='flex items-center gap-[6px]'>
                 <span><CiLocationOn /></span>
                 <h3 className='text-[13px] md:text-[14px]  text-headings'>{project.location}</h3>
               </div>
             </div>
 
-            <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white mb-[10px]">Apply<span className="text-[20px]"><GoArrowUpRight /></span></div>
+            <Link href={`/browse-project/${project._id}`} ><div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white mb-[10px]">Apply<span className="text-[20px]"><GoArrowUpRight /></span></div></Link>
             <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white"><span className="text-[20px]"><LuBookmark /></span>Save for later</div>
 
           </div>

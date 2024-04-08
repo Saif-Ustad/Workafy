@@ -6,6 +6,11 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser } from "@/lib/actions/user.action";
+
+import { createProfile } from "@/lib/actions/profile.action";
+
+
+
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
@@ -74,7 +79,11 @@ export async function POST(req: Request) {
 
     const newUser = await createUser(user);
 
+
     if (newUser) {
+
+      const newProfile = await createProfile({ Name: newUser.username, freelancerId: newUser._id });
+      
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id,

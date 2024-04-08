@@ -8,7 +8,8 @@ import style from "@/style/DashboardPageStyles/Browse_projects.module.scss"
 
 // const projects = ["saif", "kaif", "aman", "sahil", "anjum", "suhana", "misba", "simran"];
 const itemsPerPage = 5;
-import projectsDetails from "@/constants/ProjectDetails";
+// import projectsDetails from "@/constants/ProjectDetails";
+import { getProjects } from '@/lib/actions/project.action';
 
 
 import { FaCaretDown } from "react-icons/fa";
@@ -19,7 +20,7 @@ import { GoArrowUpRight } from "react-icons/go";
 
 import { MdCheck } from "react-icons/md";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button, Menu, MenuItem } from '@mui/material';
 
@@ -35,7 +36,21 @@ const Page = () => {
   const [isBudgetOpen, setIsBudgetOpen] = useState(false);
 
 
-  const budgetItems = ['$0-$100', '$100-$500', '$500-$5000', '$5000-$10000', '$10000 and above']
+  const [projectData, setProjectData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const projects = await getProjects();
+      console.log(projects)
+      setProjectData(projects);
+    };
+
+    fetchData();
+  }, []);
+
+
+
+  const budgetItems = ['All Budget', '$0-$100', '$100-$500', '$500-$5000', '$5000-$10000', '$10000 and above']
 
   const [selectedBudget, setSelectedBudget] = useState('');
 
@@ -45,7 +60,7 @@ const Page = () => {
 
 
 
-  const categoryItems = ['IT, Web and Mobile ', 'Design & Multimedia ', 'Writing & Translation', 'Admin Support', 'Engineering & Architecture', 'Marketing & Sales', 'Management and Finance', 'Legal']; // Example items
+  const categoryItems = ['All Type', 'IT, Web and Mobile ', 'Design & Multimedia ', 'Writing & Translation', 'Admin Support', 'Engineering & Architecture', 'Marketing & Sales', 'Management and Finance', 'Legal']; // Example items
 
   const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -54,12 +69,30 @@ const Page = () => {
   };
 
 
+  const [filteredProjects, setFilteredProjects] = useState([]);
 
+
+
+  //search
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+
+
+
+  // Add a new state variable to track the sorting order
+  const [sortOrder, setSortOrder] = useState('desc'); 
 
   const [anchorEl, setAnchorEl] = useState(null);
 
+
+  // Modify the handleClick function to toggle the sorting order
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    // setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
   const handleClose = () => {
@@ -67,6 +100,54 @@ const Page = () => {
   };
 
 
+
+
+  useEffect(() => {
+    let filtered = projectData;
+
+    //category
+    if (selectedCategory && selectedCategory !== 'All Type') {
+      filtered = filtered.filter(project => project.category.trim() === selectedCategory.trim());
+    }
+
+
+    //budget
+    if (selectedBudget && selectedBudget !== 'All Budget') {
+      const [selectedMin, selectedMax] = selectedBudget.split('-').map(str => parseInt(str.replace('$', '').replace(',', '')));
+      filtered = filtered.filter(project => {
+        if (project.budget_USD) {
+          const projectValue = parseInt(project.budget_USD.replace('$', '').replace(',', ''));
+          return projectValue >= selectedMin && projectValue <= selectedMax;
+        }
+        return false; // Exclude projects with undefined budget
+      });
+    }
+
+
+    //search
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(project => project.projectName.toLowerCase().includes(query));
+    }
+
+
+    // Sort the filtered projects based on the date
+    filtered = filtered?.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      if (sortOrder === 'asc') {
+        return dateA - dateB;
+      } else {
+        return dateB - dateA;
+      }
+    });
+
+
+    setFilteredProjects(filtered);
+  }, [selectedCategory, selectedBudget, searchQuery, projectData, sortOrder]);
+
+
+  
 
   return (
     // <div>
@@ -84,18 +165,18 @@ const Page = () => {
       </div>
 
 
-    
+
       <div className='container   sm:p-[20px]  mx-auto flex flex-col xl:flex-row mt-[20px] gap-[30px] sm:gap-[20px] '>
         <div className='xl:w-[25%]   '>
 
-            {/* //filter */}
+          {/* //filter */}
           <div>
             <div className='flex justify-between cursor-pointer' onClick={() => setIsFilterOpen(!isFilterOpen)}>
               <h3 className="text-[16px] text-headings md:text-[18px] font-medium ">Filter</h3>
               <span>{isFilterOpen ? <FaCaretUp /> : <FaCaretDown />} </span>
             </div>
             <div className={`transition-max-h duration-500 ease-in-out max-h-0 overflow-hidden  mt-[20px] ${isFilterOpen ? 'max-h-[200px]' : ''} relative text-customDarkGreen mb-[20px]`}>
-              <input placeholder='Keywords' className='w-full border border-gray-200   py-[7px] px-[20px] rounded-[8px]' />
+              <input placeholder='Keywords' onChange={handleSearch} className='w-full border border-gray-200   py-[7px] px-[20px] rounded-[8px]' />
               <span className='absolute right-3 top-1/2 transform -translate-y-1/2 text-[18px] '><IoSearchOutline /></span>
             </div>
           </div>
@@ -192,8 +273,8 @@ const Page = () => {
 
         <div className='xl:w-[75%]'>
           <div className='flex justify-between items-center mb-[20px]'>
-            <h2 className='text-customDarkGreen text-[15px] sm:text-[16px] font-medium'>Available Projects : {projectsDetails.length}+</h2>
-            
+            <h2 className='text-customDarkGreen text-[15px] sm:text-[16px] font-medium'>Available Projects : {filteredProjects.length}+</h2>
+
             <div>
               <Button
                 aria-controls="simple-menu"
@@ -213,11 +294,11 @@ const Page = () => {
                 <MenuItem onClick={handleClose}>New Arrival (Latest)</MenuItem>
               </Menu>
             </div>
-            
+
           </div>
 
           <div>
-            <PaginationComponent projects={projectsDetails} itemsPerPage={itemsPerPage} />
+            <PaginationComponent projects={filteredProjects} itemsPerPage={itemsPerPage} />
           </div>
 
         </div>

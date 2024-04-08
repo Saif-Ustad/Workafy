@@ -17,6 +17,7 @@ import 'aos/dist/aos.css';
 //react-slick
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { createProfile } from "@/lib/actions/profile.action"
 
 const Home = () => {
 
@@ -33,6 +34,7 @@ const Home = () => {
     }, 100); // Delay AOS initialization by 100ms
     return () => clearTimeout(timeout); // Clean up the timeout
   }, []);
+
 
   return (
     <>
