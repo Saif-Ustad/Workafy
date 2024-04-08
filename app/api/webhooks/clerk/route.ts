@@ -83,8 +83,8 @@ export async function POST(req: Request) {
 
     if (newUser) {
 
-      const newPublicProfile = await createPublicProfile({ freelancerId: newUser._id });
-      const newPrivateProfile = await createPrivateProfile({ freelancerId: newUser._id });
+      const newPublicProfile = await createPublicProfile({ FreelancerId: newUser._id });
+      const newPrivateProfile = await createPrivateProfile({ FreelancerId: newUser._id });
       
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
