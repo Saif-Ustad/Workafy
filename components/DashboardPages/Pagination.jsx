@@ -11,6 +11,7 @@ import { PiNoteLight } from "react-icons/pi";
 import { CiLocationOn } from "react-icons/ci";
 import { GoArrowUpRight } from "react-icons/go";
 import { LuBookmark } from "react-icons/lu";
+import { IoBookmark } from "react-icons/io5";
 
 import { addToBookmarkProjects } from "@/lib/actions/privateProile.action"
 import { removeBookmarkProject } from "@/lib/actions/privateProile.action"
@@ -52,7 +53,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
     };
 
     if (userId) {
-      console.log(userId);
+      // console.log(userId);
       fetchBookmarkedProjects();
     }
   }, [userId]);
@@ -63,8 +64,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
       console.log('Project added to bookmarks!');
 
       const response = await fetchBookmarks({ freelancerId: userId });
-      const data = await response.json();
-      setBookmarkedProjects(data);
+      setBookmarkedProjects(response);
     } catch (error) {
       console.error('Failed to add project to bookmarks:', error);
     }
@@ -76,8 +76,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
       console.log('Project removed from bookmarks!');
 
       const response = await fetchBookmarks({ freelancerId: userId });
-      const data = await response.json();
-      setBookmarkedProjects(data);
+      setBookmarkedProjects(response);
     } catch (error) {
       console.error('Failed to remove project from bookmarks:', error);
     }
@@ -164,9 +163,9 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
 
 
             {/* Save for later button */}
-            {bookmarkedProjects.find((p) => p._id === project._id) ? (
+            {bookmarkedProjects.find((p) => p === project._id) ? (
               <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white" onClick={() => handleRemoveFromSaved(project._id)}>
-                <span className="text-[20px]"><LuBookmark /></span>Remove from Saved
+                <span className="text-[20px]"><IoBookmark /></span>Saved
               </div>
             ) : (
               <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white" onClick={() => handleAddToBookmarks(project._id)}>

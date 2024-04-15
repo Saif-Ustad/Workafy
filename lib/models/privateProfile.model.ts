@@ -1,5 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
+
 const PdfSchema = new Schema({
     filename: String,
     contentType: String,
@@ -18,9 +19,10 @@ const my_proposal_Schema = new Schema({
         type: Number,
     },
     TimeToComplete: {
-        type: String,
+        number: Number,
+        unit: String,
     },
-    ProposalPdfs: [PdfSchema]
+    // ProposalPdfs: [PdfSchema]
 });
 
 
