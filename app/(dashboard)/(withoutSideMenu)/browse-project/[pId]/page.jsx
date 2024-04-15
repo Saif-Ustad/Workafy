@@ -18,6 +18,7 @@ import { useUser } from '@clerk/clerk-react';
 import { getProjectById } from '@/lib/actions/project.action';
 
 import { addToMyProposals } from "@/lib/actions/privateProile.action"
+import { addToProposals } from "@/lib/actions/proposal.action";
 
 
 const Page = ({ params }) => {
@@ -65,7 +66,7 @@ const Page = ({ params }) => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        const proposalData = {
+        const proposalData1 = {
             ProjectId: formData.ProjectId,
             MessageToClient: formData.message,
             BidAmount: formData.bidAmount,
@@ -73,10 +74,25 @@ const Page = ({ params }) => {
             // ProposalPdfs: formData.additionalFiles,
         };
 
-        // console.log(proposalData);
+    
 
         try {
-            await addToMyProposals({ freelancerId: userId, proposalData });
+           
+            const freelancerProposal =  await addToMyProposals({ freelancerId: userId, proposalData: proposalData1 });
+
+            const freelancerProposalId = freelancerProposal.My_Proposals[freelancerProposal.My_Proposals.length - 1]._id
+
+            const proposalData2 = {
+                FreelancerId: userId,
+                FreelancerProposalId:freelancerProposalId,
+                MessageToClient: formData.message,
+                BidAmount: formData.bidAmount,
+                TimeToComplete: formData.completionTime,
+                // ProposalPdfs: formData.additionalFiles,
+            };
+
+            
+            await addToProposals({projectId: pId,  proposalData: proposalData2});
             // Reset the form after successful submission
             setFormData({
                 ProjectId: pId,

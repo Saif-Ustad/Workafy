@@ -1,25 +1,31 @@
 import { Schema, model, models } from "mongoose";
 
 const PdfSchema = new Schema({
-    filename: String,
-    contentType: String,
-    data: Buffer
+  filename: String,
+  contentType: String,
+  data: Buffer
 });
 
 const Freelancer_proposal_Schema = new Schema({
-    FreelancerId: {
-        type: String,
-    },
-    MessageToClient: {
-        type: String,
-    },
-    BidAmount: {
-        type: Number,
-    },
-    TimeToComplete: {
-        type: String,
-    },
-    ProposalPdfs: [PdfSchema]
+  FreelancerId: {
+    type: String,
+    required: true,
+  },
+  FreelancerProposalId: {
+    type: String,
+    required: true,
+  },
+  MessageToClient: {
+    type: String,
+  },
+  BidAmount: {
+    type: Number,
+  },
+  TimeToComplete: {
+    number: Number,
+    unit: String,
+  },
+  // ProposalPdfs: [PdfSchema]
 });
 
 const ProposalSchema = new Schema({
@@ -28,8 +34,9 @@ const ProposalSchema = new Schema({
     required: true,
   },
   freelancers_proposal: {
-    type: [Freelancer_proposal_Schema]
-  }, 
+    type: [Freelancer_proposal_Schema],
+    default: []
+  },
   projectAssignTo: {
     type: String,
   }

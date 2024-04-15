@@ -6,7 +6,8 @@ import { GoArrowUpRight } from "react-icons/go";
 import { useUser } from '@clerk/clerk-react';
 
 import { fetchProposals } from "@/lib/actions/privateProile.action"
-import { fetchBookmarks } from "@/lib/actions/privateProile.action"
+import { removeProposal } from "@/lib/actions/proposal.action";
+
 import { getProjectById } from "@/lib/actions/project.action"
 import { removeMyProposal } from "@/lib/actions/privateProile.action"
 import { useEffect, useState } from "react";
@@ -41,9 +42,10 @@ const Page = () => {
   const [trigger, setTrigger] = useState(false);
 
 
-  const handleRemoveFromSaved = async (proposalId) => {
+  const handleRemoveFromSaved = async ({proposalId, projectId }) => {
     try {
       await removeMyProposal({ freelancerId: userId, proposalId });
+      await removeProposal({ projectId  , proposalId })
       console.log('Project removed from bookmarks!');
       setTrigger((prev) => !prev);
 
@@ -157,7 +159,7 @@ const Page = () => {
 
                 <div className='md:w-[32%] md:pl-[25px] my-auto'>
 
-                  <div onClick={() => handleRemoveFromSaved(project._id)} className="py-[15px] bg-headings  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-white cursor-pointer hover:bg-customGreen hover:text-white">Cancel Proposal<span className="text-[20px]"><LuBookmark /></span></div>
+                  <div onClick={() => handleRemoveFromSaved({proposalId: project._id , projectId: project.ProjectId})} className="py-[15px] bg-headings  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-white cursor-pointer hover:bg-customGreen hover:text-white">Cancel Proposal<span className="text-[20px]"><LuBookmark /></span></div>
 
                 </div>
 
