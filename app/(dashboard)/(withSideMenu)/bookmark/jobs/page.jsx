@@ -25,7 +25,7 @@ import { removeBookmarkProject } from "@/lib/actions/privateProile.action"
 
 
 
-const page = () => {
+const Page = () => {
 
   const { user } = useUser();
   const [userId, setUserId] = useState('');
@@ -167,4 +167,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

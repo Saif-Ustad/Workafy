@@ -23,7 +23,7 @@ import { BsFillTagFill } from "react-icons/bs";
 
 
 
-const page = () => {
+const Page = () => {
 
   const { user } = useUser();
   const [userId, setUserId] = useState('');
@@ -181,4 +181,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
