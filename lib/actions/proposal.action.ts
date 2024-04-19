@@ -28,7 +28,6 @@ export async function addToProposals({ projectId,  proposalData }: { projectId: 
             { projectId },
             { 
                 $addToSet: { freelancers_proposal: proposalData },
-                $set: { projectAssignTo: "" },
             },
             { new: true, upsert: true  }
         );
@@ -59,21 +58,22 @@ export async function removeProposal({ projectId, proposalId }: { projectId: str
 
 
 
-// export async function assignProject({ projectId,  proposalData }: { projectId: string, proposalData: any }) {
-//     try {
-//         await connect();
+export async function assignProject({ projectId,  proposalAssignedData }: { projectId: string, proposalAssignedData: any }) {
+    try {
+        await connect();
 
-//         const updatedProposal = await Proposal.findOneAndUpdate(
-//             { projectId },
-//             { 
-//                 $addToSet: { freelancers_proposal: proposalData },
-//                 $set: { projectAssignTo: "" },
-//             },
-//             { new: true, upsert: true  }
-//         );
-//         // console.log(updatedProposal);
-//         return JSON.parse(JSON.stringify(updatedProposal));
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+        // console.log(projectId, proposalAssignedData)
+
+        const updatedProposal = await Proposal.findOneAndUpdate(
+            { projectId },
+            { 
+                $set: { projectAssignTo: proposalAssignedData },
+            },
+            { new: true }
+        );
+        // console.log(updatedProposal);
+        return JSON.parse(JSON.stringify(updatedProposal));
+    } catch (error) {
+        console.log(error);
+    }
+}

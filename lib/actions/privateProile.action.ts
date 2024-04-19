@@ -179,7 +179,7 @@ export async function addToContractProjects({ freelancerId, proposalData }: { fr
     try {
         await connect();
 
-        console.log(freelancerId,proposalData )
+        // console.log(freelancerId,proposalData )
 
         const updatedProfile = await PrivateProfile.findOneAndUpdate(
             { FreelancerId: freelancerId },

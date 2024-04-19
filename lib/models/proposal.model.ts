@@ -38,7 +38,8 @@ const ProposalSchema = new Schema({
     default: []
   },
   projectAssignTo: {
-    type: String,
+    FreelancerId: String,
+    ProposalId: String,
   }
 
 });
