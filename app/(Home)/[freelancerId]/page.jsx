@@ -26,57 +26,23 @@ import { RiNewspaperLine } from "react-icons/ri";
 import { useEffect, useState } from "react";
 
 
-import AboutEdit from "@/components/DashboardPages/AboutEdit"
-import OverviewEdit from "@/components/DashboardPages/OverviewEdit"
-import PortfolioEdit from "@/components/DashboardPages/PortfolioEdit"
-import EmploymentEdit from "@/components/DashboardPages/EmploymentEdit"
-import CertificateEdit from "@/components/DashboardPages/CertificateEdit"
-import AdditionalEdit from "@/components/DashboardPages/AdditionalEdit"
-import AvailabilityEdit from "@/components/DashboardPages/AvailabilityEdit"
-import LanguageEdit from "@/components/DashboardPages/LanguageEdit"
-import PaymentTermEdit from "@/components/DashboardPages/PaymentTermEdit"
-
 
 import { fetchPublicProfile } from '@/lib/actions/publicProfile.action';
 
-import { useUser } from '@clerk/clerk-react';
 
-const Page = () => {
+const Page = ({ params }) => {
 
   const [profileAllData, setProfileAllData] = useState(null);
 
-  const [trigger, setTrigger] = useState(false);
-
-  const [aboutEditOpen, setAboutEditOpen] = useState(false);
-  const [overviewEditOpen, setOverviewEditOpen] = useState(false);
-  const [portfolioEditOpen, setPortfolioEditOpen] = useState(false);
-  const [employmentEditOpen, setEmploymentEditOpen] = useState(false);
-  const [certificateEditOpen, setCertificateEditOpen] = useState(false);
-  const [additionalEditOpen, setAdditionalEditOpen] = useState(false);
-  const [availabilityEditOpen, SetAvailabilityEditOpen] = useState(false);
-  const [languageEditOpen, setLanguageEditOpen] = useState(false);
-  const [paymentTermEditOpen, setPaymentTermEditOpen] = useState(false);
-
-  const { user } = useUser();
-  const [userId, setUserId] = useState('');
-
-  useEffect(() => {
-    if (user) {
-      // Fetch the userId from user's metadata
-      const { publicMetadata } = user;
-      const { userId } = publicMetadata;
-      setUserId(userId);
-    }
-  }, [user]);
+  const FreelancerId = params.freelancerId;
 
 
   useEffect(() => {
     const fetchProfile = async () => {
 
       try {
-        const profileData = await fetchPublicProfile({ freelancerId: userId })
+        const profileData = await fetchPublicProfile({ freelancerId: FreelancerId })
 
-        setTrigger(false);
         setProfileAllData(profileData);
       } catch (error) {
         console.log(error);
@@ -84,15 +50,15 @@ const Page = () => {
 
     }
 
-    if (userId) {
+    if (FreelancerId) {
       fetchProfile();
     }
-  }, [userId, trigger])
+  }, [FreelancerId])
 
   console.log(profileAllData);
 
 
-
+  
   function copyText() {
     const textToCopy = document.getElementById('textToCopy').innerText;
     navigator.clipboard.writeText(textToCopy).then(() => {
@@ -107,18 +73,7 @@ const Page = () => {
 
   return (
     <>
-      <AboutEdit setTrigger={setTrigger} aboutEditOpen={aboutEditOpen} setAboutEditOpen={setAboutEditOpen} />
-      <OverviewEdit setTrigger={setTrigger} overviewEditOpen={overviewEditOpen} setOverviewEditOpen={setOverviewEditOpen} />
-      <PortfolioEdit setTrigger={setTrigger} portfolioEditOpen={portfolioEditOpen} setPortfolioEditOpen={setPortfolioEditOpen} />
-      <EmploymentEdit setTrigger={setTrigger} employmentEditOpen={employmentEditOpen} setEmploymentEditOpen={setEmploymentEditOpen} />
-      <CertificateEdit setTrigger={setTrigger} certificateEditOpen={certificateEditOpen} setCertificateEditOpen={setCertificateEditOpen} />
-      <AdditionalEdit setTrigger={setTrigger} additionalEditOpen={additionalEditOpen} setAdditionalEditOpen={setAdditionalEditOpen} />
-      <AvailabilityEdit setTrigger={setTrigger} availabilityEditOpen={availabilityEditOpen} SetAvailabilityEditOpen={SetAvailabilityEditOpen} />
-      <LanguageEdit setTrigger={setTrigger} languageEditOpen={languageEditOpen} setLanguageEditOpen={setLanguageEditOpen} />
-      <PaymentTermEdit setTrigger={setTrigger} paymentTermEditOpen={paymentTermEditOpen} setPaymentTermEditOpen={setPaymentTermEditOpen} />
-
-
-      <div className='myProfile-page bg-[#f1fcfa] h-[90vh] overflow-y-scroll'>
+      <div className='myProfile-page bg-[#f1fcfa] '>
 
         <div className='container mx-auto px-4 sm:px-6 lg:px-8 py-[30px] flex flex-col lg:flex-row gap-[25px]'>
 
@@ -134,7 +89,7 @@ const Page = () => {
               <div className="lg:w-[75%]">
                 <div className="flex justify-between">
                   <h1 className="text-[20px] text-headings md:text-[22px] font-bold  mb-[5px]">{profileAllData?.Name}</h1>
-                  <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit onClick={() => setAboutEditOpen(true)} /></span>
+        
                 </div>
                 <p className="text-[12px] sm:text-[15px] text-[#6b7177]  mb-[20px]">{profileAllData?.TagLine ? profileAllData.TagLine : "You must be having a tagline, right ?"}</p>
                 <h3 className="text-[12px] sm:text-[15px] text-[#6b7177]  mb-[20px]"><span className="font-semibold">eXpert in : </span>{profileAllData?.ExpertIn.map((experties, id) => { return <span key={id} className="mr-[10px]">{experties}</span> })}</h3>
@@ -164,7 +119,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[5px]">Overview</h1>
-                <span onClick={() => setOverviewEditOpen(true)} className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit /></span>
+               
               </div>
               <p className="text-[14px] text-body-text">
                 {profileAllData?.Overview}
@@ -175,7 +130,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[5px]">Portfolio</h1>
-                <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit onClick={() => setPortfolioEditOpen(true)} /></span>
+               
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[20px]">
@@ -198,7 +153,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[5px]">Qualification</h1>
-                <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit /></span>
+               
               </div>
 
               <div class="overflow-x-auto mt-4">
@@ -222,7 +177,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[5px]">Employment History</h1>
-                <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit onClick={() => setEmploymentEditOpen(true)} /></span>
+            
               </div>
 
               <div class="overflow-x-auto mt-4">
@@ -261,7 +216,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[5px]">Certifications</h1>
-                <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit onClick={() => setCertificateEditOpen(true)} /></span>
+                
               </div>
 
               <div class="overflow-x-auto mt-4">
@@ -295,7 +250,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[5px]">Additional Information</h1>
-                <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit onClick={() => setAdditionalEditOpen(true)} /></span>
+                
               </div>
               <p className="text-[14px] text-body-text">
                 {profileAllData?.Additional_Information}
@@ -311,9 +266,9 @@ const Page = () => {
 
                 <hr className="mb-[15px]" />
 
-                <div id="textToCopy" className="bg-[#f1fcfa] p-2 rounded-md overflow-scroll scrollbar-none mb-[15px]">{`http://localhost:3000/${userId}`}</div>
+                <div id="textToCopy" className="bg-[#f1fcfa] p-2 rounded-md overflow-scroll scrollbar-none mb-[15px]">{`http://localhost:3000/${FreelancerId}`}</div>
 
-                <div onClick={copyText} className="flex gap-[8px] justify-center items-center bg-customGreen cursor-pointer py-4 rounded-md text-white mb-[25px]">
+                <div onClick={copyText} className="flex gap-[8px] justify-center items-center bg-customGreen py-4 rounded-md text-white mb-[25px]">
                   <span className="text-[16px] font-semibold ">Copy & Share</span>
                   <span className="text-[20px]"><GoArrowUpRight /></span>
                 </div>
@@ -468,7 +423,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[15px]">Availability</h1>
-                <span className="text-[18px] cursor-pointer text-headings"><FaPencilAlt onClick={() => SetAvailabilityEditOpen(true)} /></span>
+                
               </div>
               <hr className="mb-[25px]" />
 
@@ -498,7 +453,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[15px]">Language</h1>
-                <span className="text-[18px] cursor-pointer text-headings"><FaPencilAlt onClick={() => setLanguageEditOpen(true)} /></span>
+                
               </div>
               <hr className="mb-[25px]" />
               <div className="flex flex-col gap-[10px] text-headings">
@@ -514,7 +469,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[15px]">Payment Terms</h1>
-                <span className="text-[18px] cursor-pointer text-headings"><FaPencilAlt onClick={() => setPaymentTermEditOpen(true)} /></span>
+                
               </div>
               <hr className="mb-[25px]" />
               <p className="text-[14px] text-body-text">

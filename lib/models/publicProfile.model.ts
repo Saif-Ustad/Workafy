@@ -60,6 +60,12 @@ const PublicProfileSchema = new Schema({
     Name: {
         type: String,
     },
+    TagLine : {
+        type: String,
+    },
+    Skills : {
+        type: [String],
+    },
     ExpertIn: {
         type: [String],
     },
@@ -96,6 +102,9 @@ const PublicProfileSchema = new Schema({
     },
     Language: {
         type: [String],
+    },
+    Payment_Term: {
+        type: String,
     }
 });
 

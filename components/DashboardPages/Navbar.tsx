@@ -83,7 +83,7 @@ const Navbar = ({ hideMenuIcon }: { hideMenuIcon: boolean }) => {
         <ul className="flex justify-between gap-6 items-center">
 
           <li className='hidden lg:block'>
-            <Link href={'/'} >
+            <Link href={'/subscription'} >
               <div className="py-[12px] bg-customDarkGreen  w-[180px] rounded-[5px] text-white font-semibold text-[15px] flex gap-2 items-center justify-center hover:bg-customGreen cursor-pointer">Boost My Profile <span className="text-[20px]"><GoArrowUpRight /></span></div>
             </Link>
           </li>
@@ -96,7 +96,7 @@ const Navbar = ({ hideMenuIcon }: { hideMenuIcon: boolean }) => {
             <MdOutlineMarkEmailRead />
           </li>
 
-          <li className="lg:hidden font-semibold  hover:text-customGreen hover:cursor-pointer"><a href="/dashboard">Boost Profile</a></li>
+          <li className="lg:hidden font-semibold  hover:text-customGreen hover:cursor-pointer"><a href="/subscription">Boost Profile</a></li>
 
           <li className="lg:hidden  text-[22px]  hover:text-customGreen hover:cursor-pointer" onClick={handleMenuToggle}>
             <HiOutlineMenuAlt3 />
