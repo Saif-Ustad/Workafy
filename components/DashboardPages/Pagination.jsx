@@ -163,7 +163,7 @@ const PaginationComponent = ({ projects, itemsPerPage }) => {
 
 
             {/* Save for later button */}
-            {bookmarkedProjects.find((p) => p === project._id) ? (
+            {bookmarkedProjects?.find((p) => p === project._id) ? (
               <div className="py-[15px] bg-[#f1fcfa]  w-full rounded-md  font-semibold text-[15px] flex gap-2 items-center justify-center text-customGreen cursor-pointer hover:bg-customGreen hover:text-white" onClick={() => handleRemoveFromSaved(project._id)}>
                 <span className="text-[20px]"><IoBookmark /></span>Saved
               </div>

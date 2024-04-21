@@ -134,7 +134,7 @@ const Page = ({ params }) => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[20px]">
-                {profileAllData?.Portfolio.map((project, id) => (
+                {profileAllData?.Portfolio?.map((project, id) => (
                   <div key={id} className='flex flex-col items-center gap-[10px] rounded-[15px] bg-[#f1fcfa] shadow-sm p-[20px] text-headings text-[15px]'>
                     <h2><span className="font-medium">Project Name : </span>{project.ProjectName}</h2>
                     <div className='w-[180px] h-[200px] bg-white  flex justify-center items-center '>
@@ -193,7 +193,7 @@ const Page = ({ params }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {profileAllData?.Employement_History.map((employement, id) => (
+                    {profileAllData?.Employement_History?.map((employement, id) => (
                       <tr key={id}>
                         <td class="border border-gray-400 px-4 py-2 ]">{employement.Organisation}</td>
                         <td class="border border-gray-400 px-4 py-2 ]  ">{employement.Designation}</td>

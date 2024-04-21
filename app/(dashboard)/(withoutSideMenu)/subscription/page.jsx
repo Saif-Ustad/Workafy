@@ -24,6 +24,7 @@ const SubscriptionCardData = [
       "Workafy Priority Support"
     ],
     buttonText: "Buy Now",
+    paymentURL: "",
   },
   {
     MonthlyPrice: "Free",
@@ -41,6 +42,7 @@ const SubscriptionCardData = [
       "Standard Email Support",
     ],
     buttonText: "Free",
+    paymentURL: "",
   },
   {
     MonthlyPrice: "₹999",
@@ -59,6 +61,7 @@ const SubscriptionCardData = [
       "Workafy Priority Support",
     ],
     buttonText: "Buy Now",
+    paymentURL: "",
   },
 ]
 
@@ -89,7 +92,7 @@ const Page = () => {
                     <li key={id} className="mb-1">{feature}</li>
                   ))}
                 </ul>
-                <div className="bg-customGreen py-[14px] md:py-[17px] w-full  text-[13px] md:text-[15px] font-bold text-white rounded-[8px] flex justify-center items-center gap-[10px] hover:bg-white border hover:text-customGreen border-customGreen">{data.buttonText} <span className="text-[20px]"><GoArrowUpRight /></span></div>
+                <a href={data.paymentURL} className="bg-customGreen py-[14px] md:py-[17px] w-full  text-[13px] md:text-[15px] font-bold text-white rounded-[8px] flex justify-center items-center gap-[10px] hover:bg-white border hover:text-customGreen border-customGreen">{data.buttonText} <span className="text-[20px]"><GoArrowUpRight /></span></a>
             </div>
           ))}
       </div>

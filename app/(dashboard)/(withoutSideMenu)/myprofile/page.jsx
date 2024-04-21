@@ -89,7 +89,7 @@ const Page = () => {
     }
   }, [userId, trigger])
 
-  console.log(profileAllData);
+  // console.log(profileAllData);
 
 
 
@@ -133,11 +133,11 @@ const Page = () => {
 
               <div className="lg:w-[75%]">
                 <div className="flex justify-between">
-                  <h1 className="text-[20px] text-headings md:text-[22px] font-bold  mb-[5px]">{profileAllData?.Name}</h1>
+                  <h1 className="text-[20px] text-headings md:text-[22px] font-bold  mb-[5px]">{profileAllData?.Name ? profileAllData.Name : "Name Not Found" }</h1>
                   <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit onClick={() => setAboutEditOpen(true)} /></span>
                 </div>
                 <p className="text-[12px] sm:text-[15px] text-[#6b7177]  mb-[20px]">{profileAllData?.TagLine ? profileAllData.TagLine : "You must be having a tagline, right ?"}</p>
-                <h3 className="text-[12px] sm:text-[15px] text-[#6b7177]  mb-[20px]"><span className="font-semibold">eXpert in : </span>{profileAllData?.ExpertIn.map((experties, id) => { return <span key={id} className="mr-[10px]">{experties}</span> })}</h3>
+                <h3 className="text-[12px] sm:text-[15px] text-[#6b7177]  mb-[20px]"><span className="font-semibold">eXpert in : </span>{profileAllData?.ExpertIn.length !== 0 ?      profileAllData?.ExpertIn.map((experties, id) => { return <span key={id} className="mr-[10px]">{experties}</span> }) : "Not Set"}</h3>
 
                 <div className="flex flex-wrap gap-[15px] text-[12px] sm:text-[15px] text-[#6b7177] " >
 
@@ -179,7 +179,7 @@ const Page = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[20px]">
-                {profileAllData?.Portfolio.map((project, id) => (
+                {profileAllData?.Portfolio?.map((project, id) => (
                   <div key={id} className='flex flex-col items-center gap-[10px] rounded-[15px] bg-[#f1fcfa] p-[20px] text-headings text-[15px]'>
                     <h2><span className="font-medium">Project Name : </span>{project.ProjectName}</h2>
                     <div className='w-[180px] h-[200px] bg-white  flex justify-center items-center '>
@@ -238,7 +238,7 @@ const Page = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {profileAllData?.Employement_History.map((employement, id) => (
+                    {profileAllData?.Employement_History?.map((employement, id) => (
                       <tr key={id}>
                         <td class="border border-gray-400 px-4 py-2 ]">{employement.Organisation}</td>
                         <td class="border border-gray-400 px-4 py-2 ]  ">{employement.Designation}</td>
@@ -275,7 +275,7 @@ const Page = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {profileAllData?.Certifications.map((certificate, id) => (
+                    {profileAllData?.Certifications?.map((certificate, id) => (
                       <tr key={id}>
                         <td class="border border-gray-400 px-4 py-2 ]">{certificate.CourseName}</td>
                         <td class="border border-gray-400 px-4 py-2 ]  ">{certificate.Institute}</td>
@@ -477,7 +477,7 @@ const Page = () => {
                   <span className="text-[20px]"><LuCalendarDays /></span>
                   <span>Per Week</span>
                 </div>
-                <h2 className="font-medium">{profileAllData?.Availability.per_week} days</h2>
+                <h2 className="font-medium">{profileAllData?.Availability ?  profileAllData.Availability.per_week : "0"} days</h2>
               </div>
               <hr className="mb-[25px]" />
 
@@ -486,7 +486,7 @@ const Page = () => {
                   <span className="text-[20px]"><FaRegCalendarCheck /></span>
                   <span>Per Day</span>
                 </div>
-                <h2 className="font-medium">{profileAllData?.Availability.per_day} hours</h2>
+                <h2 className="font-medium">{profileAllData?.Availability ?  profileAllData.Availability.per_day : "0"} hours</h2>
               </div>
               <hr className="mb-[25px]" />
 
@@ -502,7 +502,7 @@ const Page = () => {
               </div>
               <hr className="mb-[25px]" />
               <div className="flex flex-col gap-[10px] text-headings">
-                {profileAllData?.Language.map((Lang, id) => (
+                {profileAllData?.Language?.map((Lang, id) => (
                   <span key={id}>{Lang}</span>
                 ))}
               </div>
