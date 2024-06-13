@@ -213,3 +213,22 @@ export async function paymentTermProfileEdit({ freelancerId, paymentTermData }: 
     console.log(error);
   }
 }
+
+
+
+
+export async function qualificationProfileEdit({ freelancerId, qualificationData }: { freelancerId: string, qualificationData: any }) {
+  try {
+    await connect();
+    const editedProfile = await publicProfile.findOneAndUpdate(
+      { FreelancerId: freelancerId },
+      { $addToSet: { Qualifications: qualificationData } },
+      { new: true }
+    );
+
+    return JSON.parse(JSON.stringify(editedProfile));
+
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -63,8 +63,14 @@ const AboutEdit = ({ aboutEditOpen, setAboutEditOpen, setTrigger }) => {
                     <div className='border border-[#e9ecef] rounded-[5px] p-[2px]'>
                     <select name='ExpertIn' className='bg-[#e9ecef] p-[10px] rounded-[5px] w-full ' required>
                         <option>Expert in</option>
-                        <option>It and web</option>
-                        <option>Media</option>
+                        <option>Development & IT</option>
+                        <option>Design & Creative</option>
+                        <option>Digital Marketing</option>
+                        <option>Writing & Translation</option>
+                        <option>Music & Audio</option>
+                        <option>Video & Animation</option>
+                        <option>Eng. & Architecture</option>
+                        <option>Finance & Accounting</option>
                     </select>
                     </div>
                     <div className='border border-[#e9ecef] rounded-[5px] p-[2px]'><input name='TagLine' className='bg-[#e9ecef] p-[10px] rounded-[5px] w-full' type="text"  placeholder='Add Your Tag Line' required/></div>

@@ -4,7 +4,7 @@ import Footer from "@/components/DashboardPages/Footer"
 
 import { FaEye } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
-import { FaRegCalendarCheck } from "react-icons/fa6";
+import { FaDivide, FaRegCalendarCheck } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
 import { FaCamera } from "react-icons/fa";
 
@@ -35,6 +35,7 @@ import AdditionalEdit from "@/components/DashboardPages/AdditionalEdit"
 import AvailabilityEdit from "@/components/DashboardPages/AvailabilityEdit"
 import LanguageEdit from "@/components/DashboardPages/LanguageEdit"
 import PaymentTermEdit from "@/components/DashboardPages/PaymentTermEdit"
+import QualificationEdit from "@/components/DashboardPages/QualificationEdit"
 
 
 import { fetchPublicProfile } from '@/lib/actions/publicProfile.action';
@@ -56,6 +57,7 @@ const Page = () => {
   const [availabilityEditOpen, SetAvailabilityEditOpen] = useState(false);
   const [languageEditOpen, setLanguageEditOpen] = useState(false);
   const [paymentTermEditOpen, setPaymentTermEditOpen] = useState(false);
+  const [qualificationEditOpen, setQualificationEditOpen] = useState(false);
 
   const { user } = useUser();
   const [userId, setUserId] = useState('');
@@ -116,6 +118,7 @@ const Page = () => {
       <AvailabilityEdit setTrigger={setTrigger} availabilityEditOpen={availabilityEditOpen} SetAvailabilityEditOpen={SetAvailabilityEditOpen} />
       <LanguageEdit setTrigger={setTrigger} languageEditOpen={languageEditOpen} setLanguageEditOpen={setLanguageEditOpen} />
       <PaymentTermEdit setTrigger={setTrigger} paymentTermEditOpen={paymentTermEditOpen} setPaymentTermEditOpen={setPaymentTermEditOpen} />
+      <QualificationEdit setTrigger={setTrigger} qualificationEditOpen={qualificationEditOpen} setQualificationEditOpen={setQualificationEditOpen} />
 
 
       <div className='myProfile-page bg-[#f1fcfa] h-[90vh] overflow-y-scroll'>
@@ -133,11 +136,11 @@ const Page = () => {
 
               <div className="lg:w-[75%]">
                 <div className="flex justify-between">
-                  <h1 className="text-[20px] text-headings md:text-[22px] font-bold  mb-[5px]">{profileAllData?.Name ? profileAllData.Name : "Name Not Found" }</h1>
+                  <h1 className="text-[20px] text-headings md:text-[22px] font-bold  mb-[5px]">{profileAllData?.Name ? profileAllData.Name : "Name Not Found"}</h1>
                   <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit onClick={() => setAboutEditOpen(true)} /></span>
                 </div>
                 <p className="text-[12px] sm:text-[15px] text-[#6b7177]  mb-[20px]">{profileAllData?.TagLine ? profileAllData.TagLine : "You must be having a tagline, right ?"}</p>
-                <h3 className="text-[12px] sm:text-[15px] text-[#6b7177]  mb-[20px]"><span className="font-semibold">eXpert in : </span>{profileAllData?.ExpertIn.length !== 0 ?      profileAllData?.ExpertIn.map((experties, id) => { return <span key={id} className="mr-[10px]">{experties}</span> }) : "Not Set"}</h3>
+                <h3 className="text-[12px] sm:text-[15px] text-[#6b7177]  mb-[20px]"><span className="font-semibold">eXpert in : </span>{profileAllData?.ExpertIn.length !== 0 ? profileAllData?.ExpertIn.map((experties, id) => { return <span key={id} className="mr-[10px]">{experties}</span> }) : "Not Set"}</h3>
 
                 <div className="flex flex-wrap gap-[15px] text-[12px] sm:text-[15px] text-[#6b7177] " >
 
@@ -198,7 +201,7 @@ const Page = () => {
             <div className='bg-white p-[25px] pb-[40px] rounded-[12px] border border-[#e9e9e9] shadow-sm'>
               <div className="flex justify-between">
                 <h1 className="text-[16px] text-headings md:text-[18px] font-medium  mb-[5px]">Qualification</h1>
-                <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit /></span>
+                <span className="text-[22px] bg-[#ffede8]  rounded-full p-2 cursor-pointer"><CiEdit onClick={() => setQualificationEditOpen(true)} /></span>
               </div>
 
               <div class="overflow-x-auto mt-4">
@@ -206,13 +209,24 @@ const Page = () => {
                   <thead>
                     <tr>
                       <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa] font-semibold">Qualification</th>
-                      <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Degree / Diploma</th>
-                      <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Year</th>
-                      <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Action</th>
+                      <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Marks / Grade</th>
+                      <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Year of Starting</th>
+                      <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Year of Passing</th>
                     </tr>
                   </thead>
                   <tbody>
                     {/* <!-- Your table data rows here --> */}
+                    {profileAllData?.Qualifications?.map((qualification, id) => (
+                      <tr key={id}>
+                        <td class="border border-gray-400 px-4 py-2 ]">{qualification.Qualification}</td>
+                        <td class="border border-gray-400 px-4 py-2 ]  ">{qualification.Marks}</td>
+                        <td className="border border-gray-400 px-4 py-2">{qualification.Start_Year}</td>
+                        <td className="border border-gray-400 px-4 py-2">{qualification.End_Year}</td>
+                      </tr>
+                    ))
+
+                    }
+
                   </tbody>
                 </table>
               </div>
@@ -271,7 +285,7 @@ const Page = () => {
                       <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa] font-semibold">Course Name</th>
                       <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Institute / University Name</th>
                       <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">	Module(s)</th>
-                      <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Action</th>
+                      {/* <th class="border border-gray-400 px-4 py-2 bg-[#f1fcfa]  font-semibold ">Action</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -477,7 +491,7 @@ const Page = () => {
                   <span className="text-[20px]"><LuCalendarDays /></span>
                   <span>Per Week</span>
                 </div>
-                <h2 className="font-medium">{profileAllData?.Availability ?  profileAllData.Availability.per_week : "0"} days</h2>
+                <h2 className="font-medium">{profileAllData?.Availability ? profileAllData.Availability.per_week : "0"} days</h2>
               </div>
               <hr className="mb-[25px]" />
 
@@ -486,7 +500,7 @@ const Page = () => {
                   <span className="text-[20px]"><FaRegCalendarCheck /></span>
                   <span>Per Day</span>
                 </div>
-                <h2 className="font-medium">{profileAllData?.Availability ?  profileAllData.Availability.per_day : "0"} hours</h2>
+                <h2 className="font-medium">{profileAllData?.Availability ? profileAllData.Availability.per_day : "0"} hours</h2>
               </div>
               <hr className="mb-[25px]" />
 
@@ -503,9 +517,18 @@ const Page = () => {
               <hr className="mb-[25px]" />
               <div className="flex flex-col gap-[10px] text-headings">
                 {profileAllData?.Language?.map((Lang, id) => (
-                  <span key={id}>{Lang}</span>
+                  <div
+                    className=" "
+                    key={id}
+                  >
+                    <span className=" flex items-center py-[5px] px-[12px] rounded-[15px]  gap-[10px]">
+                      {Lang}
+                      <span className="cursor-pointer"><IoClose /></span>
+                    </span>
+                  </div>
                 ))}
               </div>
+
             </div>
 
 

@@ -37,6 +37,21 @@ const CertificationSchema = new Schema({
     },
 });
 
+const QualificationSchema = new Schema({
+    Qualification: {
+        type: String,
+    },
+    Marks: {
+        type: String,
+    },
+    Start_Year: {
+        type: String,
+    },
+    End_Year: {
+        type: String,
+    }
+});
+
 const ProjectSchema = new Schema({
     ProjectName: {
         type: String,
@@ -83,6 +98,9 @@ const PublicProfileSchema = new Schema({
     },
     Certifications: {
         type: [CertificationSchema],
+    },
+    Qualifications: {
+        type: [QualificationSchema],
     },
     Additional_Information: {
         type: String,
