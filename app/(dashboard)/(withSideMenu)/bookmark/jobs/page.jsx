@@ -103,7 +103,7 @@ const Page = () => {
 
                 <div className='md:w-[68%] flex flex-col justify-center gap-[15px] md:pr-[25px] md:border-r border-gray-200'>
 
-                  <Link href={`/browse-project/${1}`} ><h1 className="text-[18px] text-headings md:text-[19px] font-semibold  ">{project.projectName}</h1></Link>
+                  <Link href={`/browse-project/${project._id}`} ><h1 className="text-[18px] text-headings md:text-[19px] font-semibold  ">{project.projectName}</h1></Link>
 
                   <div className='flex flex-wrap '>
 

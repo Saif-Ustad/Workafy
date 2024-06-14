@@ -146,7 +146,7 @@ const Page = () => {
                                     <h2 className='text-[14px] sm:text-[16px] mb-[20px] ml-[20px]'><span className='font-semibold ' >Freelancer ID : </span>{proposal.FreelancerId}</h2>
 
                                     <div className='flex flex-col gap-[10px] ml-[20px] text-[14px] sm:text-[16px]'>
-                                        <h2 className='break-all'><span className='font-semibold'>Profile URL :</span > <Link  href={`http://localhost:3000/${proposal.FreelancerId}`} className='text-[#007bff]'>{`http://localhost:3000/${proposal.FreelancerId}`}</Link></h2>
+                                        <h2 className='break-all'><span className='font-semibold'>Profile URL :</span > <Link  href={`https://workafy.vercel.app/${proposal.FreelancerId}`} className='text-[#007bff]'>{`http://localhost:3000/${proposal.FreelancerId}`}</Link></h2>
                                         <h2><span className='font-semibold'>Message :</span > {proposal.MessageToClient}</h2>
                                         <h2><span className='font-semibold'>Bid Amount :</span> ${proposal.BidAmount}</h2>
                                         <h2><span className='font-semibold'>Time To Complete :</span> {proposal.TimeToComplete.number} {proposal.TimeToComplete.unit}</h2>
