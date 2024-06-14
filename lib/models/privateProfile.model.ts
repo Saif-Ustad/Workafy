@@ -12,7 +12,6 @@ const PdfSchema = new Schema({
 const my_proposal_Schema = new Schema({
     ProjectId: {
         type: String,
-        unique: true,
     },
     MessageToClient: {
         type: String,
