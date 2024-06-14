@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import success from "../../../../../public/Images/success.png";
-
+import Link from 'next/link';
 
 import { useUser } from '@clerk/clerk-react';
 
@@ -71,9 +71,9 @@ const Success = () => {
                     <button onClick={() => handlePaymentSuccess()}
                         className='w-40 uppercase bg-[#009C96] text-white text-xl my-16 px-2 py-2 rounded'
                     >
-                        
+                        <Link href={'/subscription'} >
                             Proceed
-                        
+                        </Link>
                     </button>
 
                 </div>

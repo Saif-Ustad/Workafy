@@ -13,9 +13,9 @@ import { GoArrowUpRight } from "react-icons/go";
 import { LuBookmark } from "react-icons/lu";
 import { IoBookmark } from "react-icons/io5";
 
-import { addToBookmarkProjects } from "@/lib/actions/privateProile.action"
-import { removeBookmarkProject } from "@/lib/actions/privateProile.action"
-import { fetchBookmarks } from "@/lib/actions/privateProile.action"
+import { addToBookmarkProjects } from "@/lib/actions/privateProfile.action"
+import { removeBookmarkProject } from "@/lib/actions/privateProfile.action"
+import { fetchBookmarks } from "@/lib/actions/privateProfile.action"
 
 import Link from 'next/link';
 

@@ -17,7 +17,7 @@ import { useUser } from '@clerk/clerk-react';
 
 import { getProjectById } from '@/lib/actions/project.action';
 
-import { addToMyProposals } from "@/lib/actions/privateProile.action"
+import { addToMyProposals } from "@/lib/actions/privateProfile.action"
 import { addToProposals } from "@/lib/actions/proposal.action";
 
 

@@ -5,11 +5,11 @@ import { GoArrowUpRight } from "react-icons/go";
 
 import { useUser } from '@clerk/clerk-react';
 
-import { fetchContractProjects, fetchProposals } from "@/lib/actions/privateProile.action"
+import { fetchContractProjects, fetchProposals } from "@/lib/actions/privateProfile.action"
 import { removeProposal } from "@/lib/actions/proposal.action";
 
 import { getProjectById } from "@/lib/actions/project.action"
-import { removeMyProposal } from "@/lib/actions/privateProile.action"
+import { removeMyProposal } from "@/lib/actions/privateProfile.action"
 import { useEffect, useState } from "react";
 
 import Link from "next/link";

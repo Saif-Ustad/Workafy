@@ -16,10 +16,9 @@ import { useEffect, useState } from "react";
 
 import { useUser } from '@clerk/clerk-react';
 
-import { fetchBookmarks } from "@/lib/actions/privateProile.action"
+import { fetchBookmarks } from "@/lib/actions/privateProfile.action"
 import { getProjectById } from "@/lib/actions/project.action"
-import { removeBookmarkProject } from "@/lib/actions/privateProile.action"
-
+import { removeBookmarkProject } from "@/lib/actions/privateProfile.action"
 
 
 

@@ -10,7 +10,7 @@ import { LuBookmark } from "react-icons/lu";
 
 import { GoArrowUpRight } from "react-icons/go";
 
-import { addToContractProjects, fetchProposals, fetchSingleProposal } from '@/lib/actions/privateProile.action';
+import { addToContractProjects, fetchProposals, fetchSingleProposal } from '@/lib/actions/privateProfile.action';
 import { fetchAllProjectsProposals, assignProject } from '@/lib/actions/proposal.action';
 
 import { getProjectById } from "@/lib/actions/project.action"
