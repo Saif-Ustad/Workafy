@@ -67,13 +67,15 @@ const Success = () => {
                     <h3 className='text-4xl pt-20 lg:pt-0 font-bold text-center text-slate-700'>
                         Payment Successful
                     </h3>
-                    <Link href={'/subscription'} >
-                        <button onClick={() => handlePaymentSuccess()}
-                            className='w-40 uppercase bg-[#009C96] text-white text-xl my-16 px-2 py-2 rounded'
-                        >
+
+                    <button onClick={() => handlePaymentSuccess()}
+                        className='w-40 uppercase bg-[#009C96] text-white text-xl my-16 px-2 py-2 rounded'
+                    >
+                        <Link href={'/subscription'} >
                             Proceed
-                        </button>
-                    </Link>
+                        </Link>
+                    </button>
+
                 </div>
             </div>
         </div>
