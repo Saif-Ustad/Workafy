@@ -39,24 +39,11 @@ export async function POST(request) {
     });
 
 
-    const addSession = async () => {
-      try {
-        
-        const connection = await connect();
-        if(connection) {
-          await User.findOneAndUpdate(
-            { _id: new mongoose.Types.ObjectId(customerId) },
-            { $set: { subscription: { sessionId: session.id } } },
-            { new: true }
-          );  
-        }
-      }
-      catch (error) {
-        console.log(error);
-      }
-    }
-
-    addSession();
+    await User.findOneAndUpdate(
+      { _id: new mongoose.Types.ObjectId(customerId) },
+      { $set: { subscription: { sessionId: session.id } } },
+      { new: true }
+    );
 
     return NextResponse.json({ session });
   } catch (error) {

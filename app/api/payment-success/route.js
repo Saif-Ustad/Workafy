@@ -28,35 +28,21 @@ export async function POST(request) {
       const durationInSeconds = subscription.current_period_end - subscription.current_period_start;
       const durationInDays = moment.duration(durationInSeconds, 'seconds').asDays();
 
-      const updateSubscription = async () => {
-        try {
-
-          const connection = await connect();
-          if (connection) {
-            await User.findOneAndUpdate(
-              { _id: new mongoose.Types.ObjectId(customerId) },
-              {
-                $set: {
-                  subscription: {
-                    sessionId: sessionId,
-                    planId: planId,
-                    planType: planType,
-                    planStartDate: startDate,
-                    planEndDate: endDate,
-                    planDuration: durationInDays
-                  }
-                }
-              }
-            );
+      await User.findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(customerId) },
+        {
+          $set: {
+            subscription: {
+              sessionId: sessionId,
+              planId: planId,
+              planType: planType,
+              planStartDate: startDate,
+              planEndDate: endDate,
+              planDuration: durationInDays
+            }
           }
-
         }
-        catch (error) {
-          console.log(error);
-        }
-      }
-
-      updateSubscription();
+      );
 
 
       return NextResponse.json({ message: "Payment successful" });
