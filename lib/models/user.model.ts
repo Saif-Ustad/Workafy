@@ -25,6 +25,14 @@ const UserSchema = new Schema({
   lastName: {
     type: String,
   },
+  subscription : {
+    sessionId: String,
+    planId: String,
+    planType: String,
+    planStartDate: Date,
+    planEndDate: Date,
+    planDuration: Number
+  }
 });
 
 const User = models?.User || model("User", UserSchema);

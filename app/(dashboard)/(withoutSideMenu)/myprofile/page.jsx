@@ -39,6 +39,7 @@ import QualificationEdit from "@/components/DashboardPages/QualificationEdit"
 
 
 import { fetchPublicProfile } from '@/lib/actions/publicProfile.action';
+import { singleLanguageDelete } from '@/lib/actions/publicProfile.action';
 
 import { useUser } from '@clerk/clerk-react';
 
@@ -47,6 +48,8 @@ const Page = () => {
   const [profileAllData, setProfileAllData] = useState(null);
 
   const [trigger, setTrigger] = useState(false);
+ 
+  const [isShareBtnClick, setIsShareBtnClick] = useState(false);
 
   const [aboutEditOpen, setAboutEditOpen] = useState(false);
   const [overviewEditOpen, setOverviewEditOpen] = useState(false);
@@ -96,9 +99,11 @@ const Page = () => {
 
 
   function copyText() {
+    setIsShareBtnClick(true);
     const textToCopy = document.getElementById('textToCopy').innerText;
     navigator.clipboard.writeText(textToCopy).then(() => {
       console.log('Text copied to clipboard');
+      alert("Profile Link Copied!")
     }).catch((error) => {
       console.error('Failed to copy text: ', error);
     });
@@ -325,9 +330,9 @@ const Page = () => {
 
                 <hr className="mb-[15px]" />
 
-                <div id="textToCopy" className="bg-[#f1fcfa] p-2 rounded-md overflow-scroll scrollbar-none mb-[15px]">{`http://localhost:3000/${userId}`}</div>
+                <div id="textToCopy" className="bg-[#f1fcfa] p-2 rounded-md overflow-scroll scrollbar-none mb-[15px]">{`https://workafy.vercel.app/${userId}`}</div>
 
-                <div onClick={copyText} className="flex gap-[8px] justify-center items-center bg-customGreen cursor-pointer py-4 rounded-md text-white mb-[25px]">
+                <div onClick={copyText} className={`flex gap-[8px] justify-center items-center ${isShareBtnClick ? "bg-customDarkGreen": "bg-customGreen" } cursor-pointer py-4 rounded-md text-white mb-[25px]`}>
                   <span className="text-[16px] font-semibold ">Copy & Share</span>
                   <span className="text-[20px]"><GoArrowUpRight /></span>
                 </div>
@@ -523,7 +528,7 @@ const Page = () => {
                   >
                     <span className=" flex items-center py-[5px] px-[12px] rounded-[15px]  gap-[10px]">
                       {Lang}
-                      <span className="cursor-pointer"><IoClose /></span>
+                      <span className="cursor-pointer" onClick={() => { singleLanguageDelete({ freelancerId: userId , languageToDelete: Lang}); setTrigger(true)}}><IoClose /></span>
                     </span>
                   </div>
                 ))}

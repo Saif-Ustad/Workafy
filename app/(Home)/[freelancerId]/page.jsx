@@ -33,6 +33,7 @@ import { fetchPublicProfile } from '@/lib/actions/publicProfile.action';
 const Page = ({ params }) => {
 
   const [profileAllData, setProfileAllData] = useState(null);
+  const [isShareBtnClick, setIsShareBtnClick] = useState(false);
 
   const FreelancerId = params.freelancerId;
 
@@ -60,9 +61,11 @@ const Page = ({ params }) => {
 
   
   function copyText() {
+    setIsShareBtnClick(true);
     const textToCopy = document.getElementById('textToCopy').innerText;
     navigator.clipboard.writeText(textToCopy).then(() => {
       console.log('Text copied to clipboard');
+      alert("Profile Link Copied!")
     }).catch((error) => {
       console.error('Failed to copy text: ', error);
     });
@@ -266,9 +269,9 @@ const Page = ({ params }) => {
 
                 <hr className="mb-[15px]" />
 
-                <div id="textToCopy" className="bg-[#f1fcfa] p-2 rounded-md overflow-scroll scrollbar-none mb-[15px]">{`http://localhost:3000/${FreelancerId}`}</div>
+                <div id="textToCopy" className="bg-[#f1fcfa] p-2 rounded-md overflow-scroll scrollbar-none mb-[15px]">{`https://workafy.vercel.app/${FreelancerId}`}</div>
 
-                <div onClick={copyText} className="flex gap-[8px] justify-center items-center bg-customGreen py-4 rounded-md text-white mb-[25px]">
+                <div onClick={copyText} className={`flex gap-[8px] justify-center items-center ${isShareBtnClick ? "bg-customDarkGreen": "bg-customGreen" } cursor-pointer py-4 rounded-md text-white mb-[25px]`}>
                   <span className="text-[16px] font-semibold ">Copy & Share</span>
                   <span className="text-[20px]"><GoArrowUpRight /></span>
                 </div>

@@ -232,3 +232,22 @@ export async function qualificationProfileEdit({ freelancerId, qualificationData
     console.log(error);
   }
 }
+
+
+
+
+export async function singleLanguageDelete({ freelancerId, languageToDelete }: { freelancerId: string, languageToDelete: string }) {
+  try {
+    await connect();
+    const editedProfile = await publicProfile.findOneAndUpdate(
+      { FreelancerId: freelancerId },
+      { $pull: { Language: languageToDelete } },
+      { new: true }
+    );
+
+    return JSON.parse(JSON.stringify(editedProfile));
+
+  } catch (error) {
+    console.log(error);
+  }
+}

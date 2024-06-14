@@ -13,3 +13,16 @@ export async function createUser(user: any) {
     console.log(error);
   }
 }
+
+export async function fetchUser(userId: string) {
+  try {
+    await connect();
+    const UserProfile = await User.findById(userId);
+  
+    return JSON.parse(JSON.stringify(UserProfile));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
